@@ -76,7 +76,7 @@ const SignUp = () => {
     } else if (password.length < 10) {
       alert('비밀번호는 10자리 이상으로 설정해주세요.');
     } else {
-      fetch('', {
+      fetch('http://10.58.52.64:8000/users/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -85,14 +85,14 @@ const SignUp = () => {
           email: email,
           password: password,
           name: name,
-          birthday: `${birthyear}-${birthmonth}-${birthday}`,
+          birthDay: `${birthyear}-${birthmonth}-${birthday}`,
           phoneNumber: mobile,
-          address: enroll_company.address + address,
+          address: enroll_company.address + ' ' + address,
         }),
       })
         .then((res) => res.json())
         .then((data) => {
-          if (data.message === '') {
+          if (data.message === 'created_success') {
             alert('회원가입이 완료되었습니다.');
             navigate('/login');
           }
