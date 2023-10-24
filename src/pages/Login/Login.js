@@ -21,7 +21,7 @@ const Login = () => {
   };
 
   const goToMain = () => {
-    fetch('http://10.58.52.224:8000/users/login', {
+    fetch('http://10.58.52.64:8000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -33,7 +33,7 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === 'login success') {
+        if (data.message === 'LOGIN_SUCCESS') {
           localStorage.setItem('TOKEN', data.token);
           navigate('/main');
         } else if (data.message === 'USER_NOT_FOUND') {
@@ -94,6 +94,7 @@ const Login = () => {
         <button
           className={!active ? 'loginBtn' : 'loginBtnAccess'}
           disabled={!active}
+          onClick={goToMain}
         >
           로그인
         </button>
