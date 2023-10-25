@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Login.scss';
-import Logo from './logo.png';
 import { useNavigate } from 'react-router-dom';
+import Logo from './logo.png';
+import './Login.scss';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -17,18 +17,18 @@ const Login = () => {
   };
 
   const goToSignUp = () => {
-    navigate('./sign-up');
+    navigate('/sign-up');
   };
 
-  const goToMain = () => {
+  const loginWeb = () => {
     fetch('http://10.58.52.64:8000/users/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
       },
       body: JSON.stringify({
-        email: email,
-        password: password,
+        email,
+        password,
       }),
     })
       .then((res) => res.json())
@@ -46,17 +46,12 @@ const Login = () => {
       });
   };
 
-  const [active, setActive] = useState(false);
+  const isUserInputValid =
+    email.includes('@') && password.length >= 10 && email.includes('.');
 
-  const passedLogin = () => {
-    return email.includes('@') && password.length >= 10 && email.includes('.')
-      ? setActive(true)
-      : setActive(false);
-  };
-
-  const handleOnClick = (event) => {
-    if (event.key === 'Enter' && active === true) {
-      goToMain();
+  const enterKeyPress = (event) => {
+    if (event.key === 'Enter' && isUserInputValid) {
+      loginWeb();
     }
   };
 
@@ -74,8 +69,7 @@ const Login = () => {
             placeholder="이메일을 입력해주세요."
             value={email}
             onChange={setChangeEmail}
-            onKeyUp={passedLogin}
-            onKeyPress={handleOnClick}
+            onKeyPress={enterKeyPress}
           />
         </div>
 
@@ -86,15 +80,14 @@ const Login = () => {
             placeholder="비밀번호를 입력해주세요."
             value={password}
             onChange={setChangePassword}
-            onKeyUp={passedLogin}
-            onKeyPress={handleOnClick}
+            onKeyPress={enterKeyPress}
           />
         </div>
 
         <button
-          className={!active ? 'loginBtn' : 'loginBtnAccess'}
-          disabled={!active}
-          onClick={goToMain}
+          className={`loginBtn${isUserInputValid ? 'Access' : ''}`}
+          disabled={!isUserInputValid}
+          onClick={loginWeb}
         >
           로그인
         </button>
