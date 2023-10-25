@@ -1,34 +1,30 @@
 import React from 'react';
-import './Post.scss';
 import DaumPostcode from 'react-daum-postcode';
+import './Post.scss';
 
-const Post = (props) => {
-  const complete = (data) => {
-    let fullAddress = data.address;
+const Post = ({ company, setCompany }) => {
+  const complete = ({ address, addressType, bname, buildingName }) => {
+    let fullAddress = address;
     let extraAddress = '';
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
+    if (addressType === 'R') {
+      if (bname !== '') {
+        extraAddress += bname;
       }
-      if (data.buildingName !== '') {
+      if (buildingName !== '') {
         extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+          extraAddress !== '' ? `, ${buildingName}` : buildingName;
       }
       fullAddress += extraAddress !== '' ? `(${extraAddress})` : '';
     }
 
-    props.setcompany({
-      ...props.company,
+    setCompany({
+      ...company,
       address: fullAddress,
     });
   };
 
-  return (
-    <div>
-      <DaumPostcode className="postmodal" autoClose onComplete={complete} />
-    </div>
-  );
+  return <DaumPostcode className="postmodal" autoClose onComplete={complete} />;
 };
 
 export default Post;

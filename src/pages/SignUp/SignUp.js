@@ -1,79 +1,105 @@
 import React, { useState } from 'react';
-import './SignUp.scss';
 import { useNavigate } from 'react-router-dom';
 import Post from '../../components/Post/Post';
+import './SignUp.scss';
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [passwordVerify, setPasswordVerify] = useState('');
-  const [name, setName] = useState('');
-  const [mobile, setMobile] = useState('');
-  const [birthyear, setBirthyear] = useState('');
-  const [birthmonth, setBirthmonth] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [address, setAddress] = useState('');
+  const [userInput, setUserInput] = useState({
+    email: '',
+    password: '',
+    passwordVerify: '',
+    name: '',
+    mobile: '',
+    birthyear: '',
+    birthmonth: '',
+    birthday: '',
+    address: '',
+    addressDetail: '',
+  });
 
   const setChangeEmail = (event) => {
-    setEmail(event.target.value);
+    setUserInput({
+      ...userInput,
+      email: event.target.value,
+    });
   };
 
   const setChangePassword = (event) => {
-    setPassword(event.target.value);
+    setUserInput({
+      ...userInput,
+      password: event.target.value,
+    });
   };
 
   const setChangePasswordVerify = (event) => {
-    setPasswordVerify(event.target.value);
+    setUserInput({
+      ...userInput,
+      passwordVerify: event.target.value,
+    });
   };
 
   const setChangeName = (event) => {
-    setName(event.target.value);
+    setUserInput({
+      ...userInput,
+      name: event.target.value,
+    });
   };
 
   const setChangeMobile = (event) => {
-    setMobile(event.target.value);
+    setUserInput({
+      ...userInput,
+      mobile: event.target.value,
+    });
   };
 
   const setChangeBirthyear = (event) => {
-    setBirthyear(event.target.value);
+    setUserInput({
+      ...userInput,
+      birthyear: event.target.value,
+    });
   };
 
   const setChangeBirthmonth = (event) => {
-    setBirthmonth(event.target.value);
+    setUserInput({
+      ...userInput,
+      birthmonth: event.target.value,
+    });
   };
 
   const setChangeBirthday = (event) => {
-    setBirthday(event.target.value);
+    setUserInput({
+      ...userInput,
+      birthday: event.target.value,
+    });
+  };
+
+  const setChangeAddressDetail = (event) => {
+    setUserInput({
+      ...userInput,
+      addressDetail: event.target.value,
+    });
   };
 
   const setChangeAddress = (event) => {
-    setAddress(event.target.value);
-  };
-
-  const [enroll_company, setEnroll_company] = useState({
-    address: '',
-  });
-
-  const [popup, setPopup] = useState(false);
-
-  const handleInput = (event) => {
-    setEnroll_company({
-      ...enroll_company,
+    setUserInput({
+      ...userInput,
       [event.target.name]: event.target.value,
     });
   };
+
+  const [popup, setPopup] = useState(false);
 
   const handleComplete = (data) => {
     setPopup(!popup);
   };
 
   const signUp = () => {
-    if (email.indexOf('@') === -1 || email.indexOf('.') === -1) {
+    if (!userInput.email.includes('@') || !userInput.email.indexOf('.')) {
       alert('이메일 형식이 아닙니다.');
-    } else if (password !== passwordVerify) {
+    } else if (userInput.password !== userInput.passwordVerify) {
       alert('비밀번호가 다릅니다.');
-    } else if (password.length < 10) {
+    } else if (userInput.password.length < 10) {
       alert('비밀번호는 10자리 이상으로 설정해주세요.');
     } else {
       fetch('http://10.58.52.64:8000/users/signup', {
@@ -82,12 +108,12 @@ const SignUp = () => {
           'Content-Type': 'application/json;charset=utf-8',
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
-          name: name,
-          birthDay: `${birthyear}-${birthmonth}-${birthday}`,
-          phoneNumber: mobile,
-          address: enroll_company.address + ' ' + address,
+          email: userInput.email,
+          password: userInput.password,
+          name: userInput.name,
+          birthDay: `${userInput.birthyear}-${userInput.birthmonth}-${userInput.birthday}`,
+          phoneNumber: userInput.mobile,
+          address: userInput.address + ' ' + userInput.addressDetail,
         }),
       })
         .then((res) => res.json())
@@ -111,7 +137,7 @@ const SignUp = () => {
             type="text"
             placeholder="이메일을 입력해주세요."
             onChange={setChangeEmail}
-            value={email}
+            value={userInput.email}
           />
         </div>
 
@@ -121,7 +147,7 @@ const SignUp = () => {
             type="password"
             placeholder="비밀번호를 입력해주세요."
             onChange={setChangePassword}
-            value={password}
+            value={userInput.password}
           />
         </div>
 
@@ -131,7 +157,7 @@ const SignUp = () => {
             type="password"
             placeholder="비밀번호를 입력해주세요."
             onChange={setChangePasswordVerify}
-            value={passwordVerify}
+            value={userInput.passwordVerify}
           />
         </div>
 
@@ -141,7 +167,7 @@ const SignUp = () => {
             type="text"
             placeholder="이름을 입력해주세요."
             onChange={setChangeName}
-            value={name}
+            value={userInput.name}
           />
         </div>
 
@@ -156,7 +182,7 @@ const SignUp = () => {
               type="text"
               placeholder="전화번호를 입력해주세요."
               onChange={setChangeMobile}
-              value={mobile}
+              value={userInput.mobile}
             />
           </div>
         </div>
@@ -169,21 +195,29 @@ const SignUp = () => {
               className="yearSelect"
               placeholder="년도"
               onChange={setChangeBirthyear}
-              value={birthyear}
+              value={userInput.birthyear}
             />
             <input
               type="text"
               className="monthSelect"
               placeholder="월"
               onChange={setChangeBirthmonth}
-              value={birthmonth}
+              value={
+                userInput.birthmonth.length === 1
+                  ? '0' + userInput.birthmonth
+                  : userInput.birthmonth
+              }
             />
             <input
               type="text"
               className="daySelect"
               placeholder="일"
               onChange={setChangeBirthday}
-              value={birthday}
+              value={
+                userInput.birthday.length === 1
+                  ? '0' + userInput.birthday
+                  : userInput.birthday
+              }
             />
           </div>
         </div>
@@ -197,8 +231,8 @@ const SignUp = () => {
             <input
               className="addressInput"
               type="text"
-              onChange={handleInput}
-              value={enroll_company.address}
+              onChange={setChangeAddress}
+              value={userInput.address}
               required={true}
               name="address"
               placeholder="주소"
@@ -206,9 +240,9 @@ const SignUp = () => {
             <input
               className="addressDetailInput"
               type="text"
-              onChange={setChangeAddress}
+              onChange={setChangeAddressDetail}
               placeholder="상세주소"
-              value={address}
+              value={userInput.addressDetail}
             />
           </div>
         </div>
@@ -217,9 +251,7 @@ const SignUp = () => {
           가입하기
         </button>
       </div>
-      {popup && (
-        <Post company={enroll_company} setcompany={setEnroll_company} />
-      )}
+      {popup && <Post company={userInput} setCompany={setUserInput} />}
     </div>
   );
 };
