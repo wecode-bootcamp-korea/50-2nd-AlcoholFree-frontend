@@ -26,7 +26,9 @@ const Post = (props) => {
 
   return (
     <div>
-      <DaumPostcode className="postmodal" autoClose onComplete={complete} />
+      <div className="Post">
+        <DaumPostcode className="postModal" autoClose onComplete={complete} />
+      </div>
     </div>
   );
 };

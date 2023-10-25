@@ -1,0 +1,329 @@
+.cost {
+  background-color: #F4F4F4;
+
+  .container {
+    padding: 20px 24px;
+    max-width: 700px;
+    min-width: 400px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    align-self: stretch;
+    background-color: #F4F4F4;
+    margin: 0 auto;
+
+    .shopList {
+      background-color: white;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      justify-self: stretch;
+
+      .shopItem {
+        display: flex;
+        align-items: center;
+        align-self: stretch;
+        justify-content: space-between;
+        padding: 32px;
+        gap: 16px;
+
+        .itemProfile {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+
+          .itemImage {
+            img {
+              width: 80px;
+              height: 80px;
+              border-radius: 10px;
+              border: 1px solid #EEE;
+            }
+          }
+
+          .itemDetail {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 6px;
+            align-self: stretch;
+
+            .itemName {
+              font-size: 14px;
+              font-weight: 800;
+            }
+
+            .itemCategory,
+            .itemFrom {
+              font-size: 13px;
+            }
+
+            .itemOrder {
+              display: flex;
+              align-self: stretch;
+              align-items: center;
+              align-self: stretch;
+              font-size: 14px;
+              gap: 10px;
+            }
+          }
+        }
+
+        .itemTotalPrice {
+          display: flex;
+          justify-content: center;
+          width: 80px;
+          font-size: 14px;
+          font-weight: 800;
+        }
+      }
+    }
+
+    .deliver {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+      align-self: stretch;
+
+      .deliverAddress {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        gap: 16px;
+        margin: 40px 40px 0 40px;
+        padding-bottom: 25px;
+        border-bottom: 1px solid #EEE;
+
+        .label {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .deliverDetail {
+          display: flex;
+          gap: 16px;
+          align-items: center;
+          align-self: stretch;
+
+          .deliverCategory {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 14px;
+            gap: 8px;
+            width: 60px;
+          }
+
+          .customerCategory {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            font-size: 14px;
+            gap: 8px;
+            flex: 1 0 0;
+          }
+        }
+      }
+
+      .deliverMethod {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        gap: 16px;
+        margin: 20px 40px 40px 40px;
+
+        .label {
+          font-size: 18px;
+          font-weight: 500;
+        }
+
+        .deliverList {
+          display: flex;
+          flex-direction: column;
+          gap: 16px
+        }
+      }
+    }
+
+    .discount {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      align-self: stretch;
+      padding: 40px;
+      gap: 16px;
+
+      .label {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .coupon,
+      .point {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        font-size: 16px;
+        gap: 8px;
+
+        .couponDetail,
+        .pointDetail {
+          display: flex;
+          align-items: center;
+          align-self: stretch;
+          gap: 8px;
+
+          input {
+            display: flex;
+            align-items: center;
+            align-self: stretch;
+            flex: 1 0 0;
+            height: 40px;
+            border-radius: 8px;
+            border: 1px solid #EEE;
+            padding: 14px 12px 14px 12px;
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            height: 25px;
+            justify-content: center;
+            font-size: 12px;
+            border: none;
+            border-radius: 12px;
+            background-color: #E4E4E4;
+            color: white;
+          }
+        }
+      }
+    }
+
+    .payment {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      align-self: stretch;
+      padding: 40px;
+      gap: 16px;
+
+      .label {
+        font-size: 18px;
+        font-weight: 500;
+      }
+    }
+
+    .order {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      align-self: stretch;
+      padding: 40px;
+      gap: 16px;
+
+      .label {
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .orderPrice {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        font-size: 16px;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .orderDelivery {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        font-size: 16px;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .orderCoupon {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        font-size: 16px;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+
+      .orderPoint {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        font-size: 16px;
+        justify-content: space-between;
+        font-size: 14px;
+      }
+    }
+
+    .terms {
+      background-color: white;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      align-items: flex-start;
+      justify-content: center;
+      align-self: stretch;
+      padding: 40px;
+      gap: 16px;
+
+      .finalPrice {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        justify-content: space-between;
+
+        .totalPriceTab {
+          font-size: 16px;
+          font-weight: 600;
+        }
+
+        .totalPrice {
+          font-size: 18px;
+          color: red;
+          font-weight: 800;
+        }
+      }
+
+      .payBtn {
+        display: flex;
+        align-self: stretch;
+        align-items: center;
+        justify-content: center;
+        height: 50px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        color: white;
+        font-weight: 800;
+      }
+    }
+  }
+}
