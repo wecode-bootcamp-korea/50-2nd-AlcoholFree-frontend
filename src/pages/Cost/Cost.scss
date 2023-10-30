@@ -21,64 +21,134 @@
       align-items: flex-start;
       justify-content: center;
       justify-self: stretch;
+      overflow-y: scroll;
+      padding: 0 40px;
+
+      .shopCategory {
+        display: flex;
+        align-items: flex-start;
+        align-self: stretch;
+        justify-content: space-around;
+        font-size: 14px;
+        padding: 8px 0;
+        border-bottom: 1px solid #E4E4E4;
+
+        .itemName {
+          width: 150px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .itemPrice,
+        .itemTotalPrice {
+          width: 100px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .totalCount,
+        .itemCount {
+          width: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
 
       .shopItem {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         align-self: stretch;
-        justify-content: space-between;
-        padding: 32px;
-        gap: 16px;
+        justify-content: space-around;
+        font-size: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid #F4F4F4;
 
-        .itemProfile {
+        .shopInfo {
+          width: 150px;
           display: flex;
           align-items: center;
-          gap: 16px;
+          justify-content: center;
+          align-self: stretch;
+          height: 90px;
 
-          .itemImage {
+          .shopImage {
             img {
-              width: 80px;
-              height: 80px;
-              border-radius: 10px;
-              border: 1px solid #EEE;
+              width: 60px;
+              height: 70px;
             }
           }
 
-          .itemDetail {
+          .shopDetail {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            justify-content: center;
-            gap: 6px;
-            align-self: stretch;
+            gap: 4px;
+            width: 50px;
 
-            .itemName {
-              font-size: 14px;
-              font-weight: 800;
+            .shopName {
+              font-weight: 600;
             }
 
-            .itemCategory,
-            .itemFrom {
-              font-size: 13px;
-            }
-
-            .itemOrder {
-              display: flex;
-              align-self: stretch;
-              align-items: center;
-              align-self: stretch;
-              font-size: 14px;
-              gap: 10px;
+            .shopType,
+            .shopFrom {
+              font-size: 12px;
+              font-weight: 200;
             }
           }
         }
 
-        .itemTotalPrice {
+        .shopPrice,
+        .shopTotalPrice {
+          width: 100px;
           display: flex;
+          align-items: center;
           justify-content: center;
-          width: 80px;
-          font-size: 14px;
-          font-weight: 800;
+          align-self: stretch;
+        }
+
+        .shopID {
+          width: 50px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          align-self: stretch;
+          gap: 4px;
+        }
+
+        .countControl {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 4px;
+          align-self: stretch;
+
+          button {
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 12px;
+            background-color: #E4E4E4;
+          }
+
+          .shopCount {
+            width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            align-self: stretch;
+            gap: 4px;
+
+            button {
+              border: none;
+              cursor: pointer;
+              background-color: #E4E4E4;
+              font-size: 12px;
+            }
+          }
         }
       }
     }
@@ -148,8 +218,56 @@
 
         .deliverList {
           display: flex;
-          flex-direction: column;
-          gap: 16px
+          gap: 16px;
+          align-items: flex-start;
+          align-self: stretch;
+          justify-content: space-evenly;
+          margin-top: -16px;
+
+          .whatType {
+            width: 100%;
+
+            .deliverMethodType {
+              visibility: hidden;
+            }
+
+            input:checked+.radioDiv {
+              border: 1px solid #222;
+              border-radius: 5px;
+            }
+
+            div {
+              display: flex;
+              flex-direction: column;
+              align-items: flex-start;
+              align-self: stretch;
+              border: 1px solid #E4E4E4;
+              margin: 5px;
+              border-radius: 5px;
+
+              div {
+                border: none;
+
+                .deliverTitle {
+                  font-size: 14px;
+                  border: none;
+                  font-weight: 600;
+                }
+
+                .deliverPrice {
+                  font-size: 13px;
+                  border: none;
+                }
+              }
+
+              .typeDetail {
+                font-size: 12px;
+                padding-left: 5px;
+                color: #999;
+                border: none;
+              }
+            }
+          }
         }
       }
     }
@@ -321,8 +439,11 @@
         border: none;
         border-radius: 12px;
         font-size: 16px;
+        margin-top: 16px;
         color: white;
+        background-color: #222;
         font-weight: 800;
+        cursor: pointer;
       }
     }
   }
