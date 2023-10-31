@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+
 import './Main.scss';
 
 const Main = () => {
@@ -8,12 +11,18 @@ const Main = () => {
     fetch('/data/productListData.json')
       .then((res) => res.json())
       .then((data) => {
+        // console.log(data);
         setProductList(data.productList);
       });
   }, []);
 
   // useEffect(() => {
-  //   fetch(`http://10.58.52.198:8000/product/main`)
+  //   fetch(`http://10.58.52.198:8000/products/main/`, {
+  //     headers: {
+  //       token:
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+  //     },
+  //   })
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);
@@ -21,16 +30,23 @@ const Main = () => {
   //     });
   // }, []);
 
+  const CATEGORIES = [
+    { id: 1, name: '와인', className: 'wineList' },
+    { id: 2, name: '전통주', className: 'traditionalList' },
+    { id: 3, name: '소주', className: 'sojuList' },
+    { id: 4, name: '맥주', className: 'beerList' },
+  ];
+
   return (
-    <div className="Main">
+    <div className="main">
       <div className="productListMain">
         <div className="productTabMain">
           <ul className="productListTab">
-            <li className="wineList">와인</li>
-            <li className="traditionalList">전통주</li>
-            <li className="whiskeyList">위스키</li>
-            <li className="sojuList">소주</li>
-            <li className="beerList">맥주</li>
+            {CATEGORIES.map((category) => (
+              <li key={category.id} className={category.className}>
+                {category.name}
+              </li>
+            ))}
           </ul>
         </div>
         <div className="productListContainer">
@@ -41,20 +57,21 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList.map((product) => (
-              <div className="productWrapper" key={product.id}>
-                <img
-                  className="productImage"
-                  src={product.productImg}
-                  alt="wine list"
-                />
-                <div className="productDetailWrapper">
-                  <div className="productName">{product.name}</div>
-                  <div className="productDetail">{product.content}</div>
-                  <div className="productPrice">{product.price}</div>
+            {productList &&
+              productList.map((product) => (
+                <div className="productWrapper" key={product.id}>
+                  <img
+                    className="productImage"
+                    src={product.productImg}
+                    alt="wine list"
+                  />
+                  <div className="productDetailWrapper">
+                    <div className="productName">{product.name}</div>
+                    <div className="productDetail">{product.content}</div>
+                    <div className="productPrice">{product.price}</div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
           </div>
         </div>
 
@@ -66,18 +83,19 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList.map((product) => (
-              <div className="productWrapper" key={product.id}>
-                <img
-                  className="productImage"
-                  src={product.productImg}
-                  alt="second product"
-                />
-                <div className="productName">{product.name}</div>
-                <div className="productDetail">{product.content}</div>
-                <div className="productPrice">{product.price}</div>
-              </div>
-            ))}
+            {productList &&
+              productList.map((product) => (
+                <div className="productWrapper" key={product.id}>
+                  <img
+                    className="productImage"
+                    src={product.productImg}
+                    alt="second product"
+                  />
+                  <div className="productName">{product.name}</div>
+                  <div className="productDetail">{product.content}</div>
+                  <div className="productPrice">{product.price}</div>
+                </div>
+              ))}
           </div>
         </div>
       </div>
