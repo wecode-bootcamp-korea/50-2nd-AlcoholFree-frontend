@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 
 import './Main.scss';
@@ -38,7 +39,7 @@ const Main = () => {
   ];
 
   return (
-    <div className="main">
+    <div className="Main">
       <div className="productListMain">
         <div className="productTabMain">
           <ul className="productListTab">
@@ -59,7 +60,11 @@ const Main = () => {
           <div className="alcoholProductList">
             {productList &&
               productList.map((product) => (
-                <div className="productWrapper" key={product.id}>
+                <Link
+                  to={`/detail/${product.id}`}
+                  className="productWrapper"
+                  key={product.id}
+                >
                   <img
                     className="productImage"
                     src={product.productImg}
@@ -70,7 +75,7 @@ const Main = () => {
                     <div className="productDetail">{product.content}</div>
                     <div className="productPrice">{product.price}</div>
                   </div>
-                </div>
+                </Link>
               ))}
           </div>
         </div>
