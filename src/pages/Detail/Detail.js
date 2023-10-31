@@ -4,9 +4,8 @@ import { useParams } from 'react-router-dom';
 import './Detail.scss';
 
 const Detail = () => {
-  const params = useParams();
-  const productId = params.id;
-  const [productDetail, setProductDetail] = useState('');
+  const { productId } = useParams();
+  const [productDetail, setProductDetail] = useState({});
   const [quantity, setQuantity] = useState(1);
   const handleDecrease = () => {
     if (quantity > 1) {

@@ -17,7 +17,12 @@ const Main = () => {
   }, []);
 
   // useEffect(() => {
-  //   fetch(`http://10.58.52.198:8000/product/main/`)
+  //   fetch(`http://10.58.52.198:8000/products/main/`, {
+  //     headers: {
+  //       token:
+  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+  //     },
+  //   })
   //     .then((res) => res.json())
   //     .then((data) => {
   //       console.log(data);
