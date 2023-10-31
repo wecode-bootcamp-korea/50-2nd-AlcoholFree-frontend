@@ -30,16 +30,28 @@ const Main = () => {
   //     });
   // }, []);
 
+  const CATEGORIES = [
+    { id: 1, name: '와인', className: 'wineList' },
+    { id: 2, name: '전통주', className: 'traditionalList' },
+    { id: 3, name: '소주', className: 'sojuList' },
+    { id: 4, name: '맥주', className: 'beerList' },
+  ];
+
   return (
     <div className="Main">
       <div className="productListMain">
         <div className="productTabMain">
           <ul className="productListTab">
-            <li className="wineList">와인</li>
+            {CATEGORIES.map((category) => (
+              <li key={category.id} className={category.className}>
+                {category.name}
+              </li>
+            ))}
+            {/* <li className="wineList">와인</li>
             <li className="traditionalList">전통주</li>
             <li className="whiskeyList">위스키</li>
             <li className="sojuList">소주</li>
-            <li className="beerList">맥주</li>
+            <li className="beerList">맥주</li> */}
           </ul>
         </div>
         <div className="productListContainer">
