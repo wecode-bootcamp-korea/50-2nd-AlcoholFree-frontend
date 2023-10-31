@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import Example from './example.png';
 import './Cost.scss';
 
-const Cost = (item) => {
+const Cost = () => {
   const [itemList, setItemList] = useState([]);
-  const [checkInput, setCheckInput] = useState([]);
   const [user, setUser] = useState([]);
-  const { id, image, name, type, from, count, price, quantity } = item;
+  const [checkInput, setCheckInput] = useState('');
+  const [usePoint, setUsePoint] = useState();
 
-  // 장바구니 불러오기
-  useEffect(() => {
+  // 장바구니 불러오는 함수
+  const getCartList = () => {
     fetch(`http://10.58.52.52:8000/products/cart`, {
       method: 'GET',
       headers: {
@@ -21,137 +20,93 @@ const Cost = (item) => {
       .then((data) => {
         setItemList(data.message);
       });
+  };
+
+  // 장바구니 불러오기
+  useEffect(() => {
+    getCartList();
   }, []);
 
   // 회원정보 불러오기
-  // useEffect(() => {
-  //   fetch(`http://10.58.52.222:3000/products/cost`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization:
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
-  //     },
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setUser(data.message[0]);
-  //     });
-  // }, []);
+  useEffect(() => {
+    fetch(`http://10.58.52.200:3000/products/costUser`, {
+      method: 'POST',
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MTk0OTJ9.raeSnK2Ql4LCAqVVXd53p2o933AtBHhUmLcLkFDHKP0',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setUser(data.message[0]);
+      });
+  }, []);
 
   // 상품 개수 추가
-  const plusQuantity = () => {
+  const plusCount = (id) => {
+    const productQuantity = itemList.find((item) => item.id === id).quantity;
+    const productCount = itemList.find((item) => item.id === id).count;
+
+    if (productCount >= productQuantity)
+      return alert('재고 수량이 부족합니다.');
+
     fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
       method: 'PATCH',
       headers: {
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
       },
       body: JSON.stringify({
-        count: count + 1,
+        count: itemList.find((item) => item.id === id).count + 1,
       }),
     }).then((res) => {
       if (res.ok) {
-        fetch('http://10.58.52.52:8000/products/cart', {
-          method: 'GET',
-          headers: {
-            Authorization:
-              'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setItemList(data.message);
-          });
+        getCartList();
       }
     });
   };
 
   // 상품 개수 감소
-  const minusQuantity = () => {
-    if (count === 1) {
-      alert('삭제합니다!');
-      fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
-        },
-      });
-    } else {
-      fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
-        method: 'PATCH',
-        headers: {
-          Authorization:
-            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
-        },
-        body: JSON.stringify({
-          count: count - 1,
-        }),
-      }).then((res) => {
-        if (res.ok) {
-          fetch('http://10.58.52.52:8000/products/cart', {
-            method: 'GET',
-            headers: {
-              Authorization:
-                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
-            },
-          })
-            .then((res) => res.json())
-            .then((data) => {
-              setItemList(data.message);
-            });
-        }
-      });
-    }
-  };
+  const minusCount = (id) => {
+    const productCount = itemList.find((item) => item.id === id).count;
 
-  // 상품 삭제
-  const deleteItem = () => {
+    if (productCount <= 1) return alert('1개 이하로는 줄일 수 없습니다.');
+
     fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
-      method: 'DELETE',
+      method: 'PATCH',
       headers: {
+        'Content-Type': 'application/json;charset=utf-8',
         Authorization:
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
       },
+      body: JSON.stringify({
+        count: productCount - 1,
+      }),
+    }).then((res) => {
+      if (res.ok) {
+        getCartList();
+      }
     });
   };
 
-  // const orderItem = () => {
-  //   fetch(`api주소/carts/${id}`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       Authorization: localStorage.getItem('token'),
-  //     },
-  //   });
+  // 상품 삭제
+  const deleteItem = (id) => {
+    fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
+      },
+    }).then((res) => {
+      if (res.ok) {
+        getCartList();
+      }
+    });
+  };
 
-  //   fetch(`api주소/carts/${id}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       Authorization: localStorage.getItem('token'),
-  //     },
-  //   });
-
-  //   fetch(`api주소/`)
-  // };
-
-  // 유저 mock Data
-  // const user = {
-  //   name: '홍길동',
-  //   mobile: '010-1234-5678',
-  //   address: '서울특별시',
-  // };
-
-  // 상품 가격 합산
-  // const getTotalPrice = (itemList) => {
-  //   let sum = 0;
-  //   for (let i = 0; i < itemList.length; i++) {
-  //     sum += itemList[0].price * itemList[0].count;
-  //   }
-
-  //   return sum;
-  // };
-
-  // 배송 방법
+  // 배송 방법(Mock Data화)
   const deliveryMethods = [
     {
       name: '일반 배송',
@@ -170,8 +125,52 @@ const Cost = (item) => {
     },
   ];
 
+  // 배송 방법 토글
   const checkDeliveryMethod = (name) => {
     setCheckInput(name);
+  };
+
+  // 주문한 상품 금액 총합
+  const totalPriceCal = () => {
+    let sum = 0;
+
+    for (let i = 0; i < itemList.length; i++) {
+      sum += itemList[i].price * itemList[i].count;
+    }
+
+    return sum;
+  };
+
+  // 포인트 사용
+  const usingPoint = () => {
+    if (user.point < totalPriceCal()) return alert('포인트가 부족합니다.');
+    setUsePoint(
+      checkInput === '무료' ? totalPriceCal() : totalPriceCal() + checkInput,
+    );
+  };
+
+  // 상품 주문
+  const orderItem = () => {
+    fetch(`http://10.58.52.200:3000/products/costPay`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MTk0OTJ9.raeSnK2Ql4LCAqVVXd53p2o933AtBHhUmLcLkFDHKP0',
+      },
+      body: JSON.stringify({
+        totalPrice:
+          checkInput === '무료'
+            ? totalPriceCal()
+            : checkInput + totalPriceCal(),
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.message === 'order_success') {
+          alert('결제가 완료되었습니다.');
+        }
+      });
   };
 
   return (
@@ -186,29 +185,36 @@ const Cost = (item) => {
             <div className="itemTotalPrice">총 가격</div>
           </div>
 
-          {itemList.map((data) => (
+          {itemList.map((data, index) => (
             <div className="shopItem" key={data.id}>
-              <div className="shopID">{data.id}</div>
+              <div className="shopID">{index + 1}</div>
               <div className="shopInfo">
                 <div className="shopImage">
                   <img src={data.productImg} alt="상품이미지" />
                 </div>
                 <div className="shopDetail">
                   <div className="shopName">{data.name}</div>
-                  <div className="shopType">{data.type}</div>
-                  <div className="shopFrom">{data.from}</div>
+                  <div className="shopType">{data.avm}</div>
+                  <div className="shopFrom">{data.origin}</div>
                 </div>
               </div>
-              <div className="shopPrice">{data.price}원</div>
+              <div className="shopPrice">
+                {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
+              </div>
               <div className="countControl">
                 <div className="shopCount">
-                  <button onClick={plusQuantity}>+</button>
+                  <button onClick={() => plusCount(data.id)}>+</button>
                   {data.count}
-                  <button onClick={minusQuantity}>-</button>
+                  <button onClick={() => minusCount(data.id)}>-</button>
                 </div>
-                <button onClick={deleteItem}>삭제</button>
+                <button onClick={() => deleteItem(data.id)}>삭제</button>
               </div>
-              <div className="shopTotalPrice">{data.price * data.count}원</div>
+              <div className="shopTotalPrice">
+                {(data.price * data.count)
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                원
+              </div>
             </div>
           ))}
         </div>
@@ -238,8 +244,7 @@ const Cost = (item) => {
                     type="radio"
                     className="deliverMethodType"
                     value={method.name}
-                    checked={checkInput === `${method.deliverPrice}`}
-                    onChange={checkDeliveryMethod}
+                    checked={checkInput === method.deliverPrice}
                     id={method.name}
                   />
                   <div
@@ -252,7 +257,9 @@ const Cost = (item) => {
                       <div className="deliverPrice">
                         {method.deliverPrice === '무료'
                           ? method.deliverPrice
-                          : method.deliverPrice + '원'}
+                          : method.deliverPrice
+                              .toString()
+                              .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'}
                       </div>
                     </div>
                     <div className="typeDetail">{method.deliverPeriod}</div>
@@ -264,58 +271,79 @@ const Cost = (item) => {
         </div>
 
         <div className="discount">
-          <div className="label">할인 혜택</div>
-          <div className="coupon">
+          <div className="label">결제 방법</div>
+          {/* <div className="coupon">
             <div className="discountType">쿠폰</div>
             <div className="couponDetail">
               <input className="useCoupon" type="text" />
               <button>최대 사용</button>
             </div>
-          </div>
+          </div> */}
           <div className="point">
             <div className="discountType">포인트</div>
             <div className="pointDetail">
-              <input className="costPoint" type="text" />
-              <button>최대 사용</button>
+              <input
+                className="costPoint"
+                type="text"
+                placeholder={'잔여 포인트 : ' + user.point + 'P'}
+                value={usePoint}
+              />
+              <button onClick={usingPoint}>최대 사용</button>
             </div>
           </div>
-        </div>
-
-        <div className="payment">
-          <div className="label">결제 방법</div>
         </div>
 
         <div className="order">
           <div className="label">최종 주문정보</div>
           <div className="orderPrice">
             <div className="price">즉시 구매가</div>
-            <div className="price">원</div>
+            <div className="price">
+              {totalPriceCal()
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              원
+            </div>
           </div>
 
           <div className="orderDelivery">
             <div className="price">배송비</div>
             <div className="price">
-              {checkInput === '무료' ? checkInput : `${checkInput}원`}
+              {checkInput === '무료'
+                ? checkInput
+                : `${checkInput
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`}
             </div>
           </div>
 
-          <div className="orderCoupon">
+          {/* <div className="orderCoupon">
             <div className="price">쿠폰 사용</div>
             <div className="price">-</div>
-          </div>
+          </div> */}
 
           <div className="orderPoint">
             <div className="price">포인트 사용</div>
-            <div className="price">-</div>
+            <div className="price">{usePoint > 0 ? usePoint + 'P' : '-'}</div>
           </div>
         </div>
 
         <div className="terms">
           <div className="finalPrice">
             <div className="totalPriceTab">총 결제금액</div>
-            <div className="totalPrice">280,500원</div>
+            <div className="totalPrice">
+              {checkInput === '무료'
+                ? totalPriceCal()
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                : (checkInput + totalPriceCal())
+                    .toString()
+                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+              원
+            </div>
           </div>
-          <button className="payBtn">결제하기</button>
+          <button className="payBtn" onClick={orderItem}>
+            결제하기
+          </button>
         </div>
       </div>
     </div>

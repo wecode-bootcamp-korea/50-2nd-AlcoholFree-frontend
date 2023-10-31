@@ -73,6 +73,7 @@
           justify-content: center;
           align-self: stretch;
           height: 90px;
+          gap: 16px;
 
           .shopImage {
             img {
@@ -85,7 +86,7 @@
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            gap: 4px;
+            gap: 8px;
             width: 50px;
 
             .shopName {
@@ -229,14 +230,14 @@
 
             .deliverMethodType {
               visibility: hidden;
+
+              &:checked~.radioDiv {
+                border: 1px solid #222;
+                border-radius: 5px;
+              }
             }
 
-            input:checked+.radioDiv {
-              border: 1px solid #222;
-              border-radius: 5px;
-            }
-
-            div {
+            .radioDiv {
               display: flex;
               flex-direction: column;
               align-items: flex-start;
@@ -244,9 +245,17 @@
               border: 1px solid #E4E4E4;
               margin: 5px;
               border-radius: 5px;
+              cursor: pointer;
+              gap: 16px;
+              padding: 8px;
 
-              div {
+              .type {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                align-self: stretch;
                 border: none;
+                gap: 8px;
 
                 .deliverTitle {
                   font-size: 14px;
@@ -261,10 +270,8 @@
               }
 
               .typeDetail {
-                font-size: 12px;
-                padding-left: 5px;
-                color: #999;
-                border: none;
+                font-size: 13px;
+                font-weight: 200;
               }
             }
           }
@@ -324,7 +331,8 @@
             border: none;
             border-radius: 12px;
             background-color: #E4E4E4;
-            color: white;
+            color: black;
+            cursor: pointer;
           }
         }
       }
