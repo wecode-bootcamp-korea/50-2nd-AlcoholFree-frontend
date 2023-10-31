@@ -7,6 +7,11 @@ const Cost = () => {
   const [checkInput, setCheckInput] = useState('');
   const [usePoint, setUsePoint] = useState();
 
+  // 숫자 쉼표 추가
+  const numWithComma = (a) => {
+    return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   // 장바구니 불러오는 함수
   const getCartList = () => {
     fetch(`http://10.58.52.52:8000/products/cart`, {
@@ -18,7 +23,7 @@ const Cost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        setItemList(data.message);
+        setItemList(data.result);
       });
   };
 
@@ -58,7 +63,7 @@ const Cost = () => {
           'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
       },
       body: JSON.stringify({
-        count: itemList.find((item) => item.id === id).count + 1,
+        count: productCount + 1,
       }),
     }).then((res) => {
       if (res.ok) {
@@ -131,21 +136,17 @@ const Cost = () => {
   };
 
   // 주문한 상품 금액 총합
-  const totalPriceCal = () => {
-    let sum = 0;
-
-    for (let i = 0; i < itemList.length; i++) {
-      sum += itemList[i].price * itemList[i].count;
-    }
+  const totalPriceCal = itemList.reduce((sum, array, index) => {
+    sum += array.price * array.count;
 
     return sum;
-  };
+  }, 0);
 
   // 포인트 사용
   const usingPoint = () => {
-    if (user.point < totalPriceCal()) return alert('포인트가 부족합니다.');
+    if (user.point < totalPriceCal) return alert('포인트가 부족합니다.');
     setUsePoint(
-      checkInput === '무료' ? totalPriceCal() : totalPriceCal() + checkInput,
+      checkInput === '무료' ? totalPriceCal : totalPriceCal + checkInput,
     );
   };
 
@@ -160,9 +161,7 @@ const Cost = () => {
       },
       body: JSON.stringify({
         totalPrice:
-          checkInput === '무료'
-            ? totalPriceCal()
-            : checkInput + totalPriceCal(),
+          checkInput === '무료' ? totalPriceCal : checkInput + totalPriceCal,
       }),
     })
       .then((res) => res.json())
@@ -198,9 +197,7 @@ const Cost = () => {
                   <div className="shopFrom">{data.origin}</div>
                 </div>
               </div>
-              <div className="shopPrice">
-                {data.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원
-              </div>
+              <div className="shopPrice">{numWithComma(data.price)}원</div>
               <div className="countControl">
                 <div className="shopCount">
                   <button onClick={() => plusCount(data.id)}>+</button>
@@ -210,10 +207,7 @@ const Cost = () => {
                 <button onClick={() => deleteItem(data.id)}>삭제</button>
               </div>
               <div className="shopTotalPrice">
-                {(data.price * data.count)
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-                원
+                {numWithComma(data.price * data.count)}원
               </div>
             </div>
           ))}
@@ -257,9 +251,7 @@ const Cost = () => {
                       <div className="deliverPrice">
                         {method.deliverPrice === '무료'
                           ? method.deliverPrice
-                          : method.deliverPrice
-                              .toString()
-                              .replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '원'}
+                          : numWithComma(method.deliverPrice) + '원'}
                       </div>
                     </div>
                     <div className="typeDetail">{method.deliverPeriod}</div>
@@ -297,12 +289,7 @@ const Cost = () => {
           <div className="label">최종 주문정보</div>
           <div className="orderPrice">
             <div className="price">즉시 구매가</div>
-            <div className="price">
-              {totalPriceCal()
-                .toString()
-                .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
-              원
-            </div>
+            <div className="price">{numWithComma(totalPriceCal)}원</div>
           </div>
 
           <div className="orderDelivery">
@@ -310,9 +297,7 @@ const Cost = () => {
             <div className="price">
               {checkInput === '무료'
                 ? checkInput
-                : `${checkInput
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}원`}
+                : `${numWithComma(checkInput)}원`}
             </div>
           </div>
 
@@ -332,12 +317,8 @@ const Cost = () => {
             <div className="totalPriceTab">총 결제금액</div>
             <div className="totalPrice">
               {checkInput === '무료'
-                ? totalPriceCal()
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                : (checkInput + totalPriceCal())
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',')}
+                ? numWithComma(totalPriceCal)
+                : numWithComma(checkInput + totalPriceCal)}
               원
             </div>
           </div>
