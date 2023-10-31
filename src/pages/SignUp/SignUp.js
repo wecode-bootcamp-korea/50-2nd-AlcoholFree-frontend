@@ -66,68 +66,58 @@ const SignUp = () => {
 
   return (
     <div className="signUp">
-      <div className="container">
+      <div className="container" onChange={setChangeUserInput}>
         <div className="pageTitle">회원 가입</div>
 
-        <div className="emailInfo">
+        <div className="info email">
           <div className="label">이메일 주소</div>
           <input
             type="text"
             placeholder="이메일을 입력해주세요."
-            onChange={setChangeUserInput}
             value={userInput.email}
             name="email"
           />
         </div>
 
-        <div className="passwordInfo">
+        <div className="info password">
           <div className="label">비밀번호</div>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요."
-            onChange={setChangeUserInput}
             value={userInput.password}
             name="password"
           />
         </div>
 
-        <div className="passwordInfo">
+        <div className="info password">
           <div className="label">비밀번호 확인</div>
           <input
             type="password"
             placeholder="비밀번호를 입력해주세요."
-            onChange={setChangeUserInput}
             value={userInput.passwordVerify}
             name="passwordVerify"
           />
         </div>
 
-        <div className="nameInfo">
+        <div className="info name">
           <div className="label">이름</div>
           <input
             type="text"
             placeholder="이름을 입력해주세요."
-            onChange={setChangeUserInput}
             value={userInput.name}
             name="name"
           />
         </div>
 
-        <div className="numberInfo">
+        <div className="info number">
           <div className="label">전화번호</div>
-          <div className="phoneNumber">
-            {/* <select className="preNumber">
-              <option>010</option>
-            </select> */}
-            <input
-              className="backNumber"
-              type="text"
-              placeholder="전화번호를 입력해주세요."
-              onChange={setChangeUserInput}
-              value={userInput.mobile}
-              name="mobile"
-            />
-          </div>
+          <input
+            className="backNumber"
+            type="text"
+            placeholder="전화번호를 입력해주세요."
+            value={userInput.mobile}
+            name="mobile"
+          />
         </div>
 
         <div className="birthInfo">
@@ -137,7 +127,6 @@ const SignUp = () => {
               type="text"
               className="yearSelect"
               placeholder="년도"
-              onChange={setChangeUserInput}
               value={userInput.birthyear}
               name="birthyear"
             />
@@ -145,7 +134,6 @@ const SignUp = () => {
               type="text"
               className="monthSelect"
               placeholder="월"
-              onChange={setChangeUserInput}
               value={userInput.birthmonth}
               name="birthmonth"
             />
@@ -153,7 +141,6 @@ const SignUp = () => {
               type="text"
               className="daySelect"
               placeholder="일"
-              onChange={setChangeUserInput}
               value={userInput.birthday}
               name="birthday"
             />
@@ -169,16 +156,14 @@ const SignUp = () => {
             <input
               className="addressInput"
               type="text"
-              onChange={setChangeUserInput}
               value={userInput.address}
               required={true}
               name="address"
               placeholder="주소"
             />
             <input
-              className="addressDetailInput"
+              className="addressInput detail"
               type="text"
-              onChange={setChangeUserInput}
               placeholder="상세주소"
               value={userInput.addressDetail}
               name="addressDetail"

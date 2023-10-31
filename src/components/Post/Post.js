@@ -24,13 +24,7 @@ const Post = ({ company, setCompany }) => {
     });
   };
 
-  return (
-    <div>
-      <div className="Post">
-        <DaumPostcode className="postModal" autoClose onComplete={complete} />
-      </div>
-    </div>
-  );
+  return <DaumPostcode className="postModal" autoClose onComplete={complete} />;
 };
 
 export default Post;
