@@ -35,7 +35,6 @@ const Main = () => {
     { id: 3, name: '소주' },
     { id: 4, name: '맥주' },
   ];
-
   return (
     <div className="Main">
       <div className="productListMain">
@@ -56,24 +55,28 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList.map((product) => (
-              <Link
-                to={`/detail/${product.id}`}
-                className="productWrapper"
-                key={product.id}
-              >
-                <img
-                  className="productImage"
-                  src={product.productImg}
-                  alt="wine list"
-                />
-                <div className="productDetailWrapper">
-                  <div className="productName">{product.name}</div>
-                  <div className="productDetail">{product.content}</div>
-                  <div className="productPrice">{product.price}</div>
-                </div>
-              </Link>
-            ))}
+            {productList.map((product) => {
+              if (product.categoryId === '1') {
+                return (
+                  <Link
+                    to={`/detail/${product.id}`}
+                    className="productWrapper"
+                    key={product.id}
+                  >
+                    <img
+                      className="productImage"
+                      src={product.productImg}
+                      alt="wine list"
+                    />
+                    <div className="productDetailWrapper">
+                      <div className="productName">{product.name}</div>
+                      <div className="productDetail">{product.content}</div>
+                      <div className="productPrice">{product.price}</div>
+                    </div>
+                  </Link>
+                );
+              }
+            })}
           </div>
         </div>
 
@@ -85,18 +88,92 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList.map((product) => (
-              <div className="productWrapper" key={product.id}>
-                <img
-                  className="productImage"
-                  src={product.productImg}
-                  alt="second product"
-                />
-                <div className="productName">{product.name}</div>
-                <div className="productDetail">{product.content}</div>
-                <div className="productPrice">{product.price}</div>
-              </div>
-            ))}
+            {productList.map((product) => {
+              if (product.categoryId === '2') {
+                return (
+                  <Link
+                    to={`/detail/${product.id}`}
+                    className="productWrapper"
+                    key={product.id}
+                  >
+                    <img
+                      className="productImage"
+                      src={product.productImg}
+                      alt="wine list"
+                    />
+                    <div className="productDetailWrapper">
+                      <div className="productName">{product.name}</div>
+                      <div className="productDetail">{product.content}</div>
+                      <div className="productPrice">{product.price}</div>
+                    </div>
+                  </Link>
+                );
+              }
+            })}
+          </div>
+        </div>
+        <div className="productListContainer">
+          <div className="productListHeader">
+            <div className="productHeaderWrapper">
+              <h2 className="titleProductList">소주</h2>
+            </div>
+          </div>
+
+          <div className="alcoholProductList">
+            {productList.map((product) => {
+              if (product.categoryId === '3') {
+                return (
+                  <Link
+                    to={`/detail/${product.id}`}
+                    className="productWrapper"
+                    key={product.id}
+                  >
+                    <img
+                      className="productImage"
+                      src={product.productImg}
+                      alt="wine list"
+                    />
+                    <div className="productDetailWrapper">
+                      <div className="productName">{product.name}</div>
+                      <div className="productDetail">{product.content}</div>
+                      <div className="productPrice">{product.price}</div>
+                    </div>
+                  </Link>
+                );
+              }
+            })}
+          </div>
+        </div>
+        <div className="productListContainer">
+          <div className="productListHeader">
+            <div className="productHeaderWrapper">
+              <h2 className="titleProductList">맥주</h2>
+            </div>
+          </div>
+
+          <div className="alcoholProductList">
+            {productList.map((product) => {
+              if (product.categoryId === '4') {
+                return (
+                  <Link
+                    to={`/detail/${product.id}`}
+                    className="productWrapper"
+                    key={product.id}
+                  >
+                    <img
+                      className="productImage"
+                      src={product.productImg}
+                      alt="wine list"
+                    />
+                    <div className="productDetailWrapper">
+                      <div className="productName">{product.name}</div>
+                      <div className="productDetail">{product.content}</div>
+                      <div className="productPrice">{product.price}</div>
+                    </div>
+                  </Link>
+                );
+              }
+            })}
           </div>
         </div>
       </div>
