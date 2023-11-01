@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 import './Main.scss';
 
@@ -12,7 +11,6 @@ const Main = () => {
     fetch('/data/productListData.json')
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setProductList(data.productList);
       });
   }, []);
@@ -32,10 +30,10 @@ const Main = () => {
   // }, []);
 
   const CATEGORIES = [
-    { id: 1, name: '와인', className: 'wineList' },
-    { id: 2, name: '전통주', className: 'traditionalList' },
-    { id: 3, name: '소주', className: 'sojuList' },
-    { id: 4, name: '맥주', className: 'beerList' },
+    { id: 1, name: '와인' },
+    { id: 2, name: '전통주' },
+    { id: 3, name: '소주' },
+    { id: 4, name: '맥주' },
   ];
 
   return (
@@ -44,15 +42,10 @@ const Main = () => {
         <div className="productTabMain">
           <ul className="productListTab">
             {CATEGORIES.map((category) => (
-              <li key={category.id} className={category.className}>
+              <li key={category.id} className="alcoholCategoryList">
                 {category.name}
               </li>
             ))}
-            {/* <li className="wineList">와인</li>
-            <li className="traditionalList">전통주</li>
-            <li className="whiskeyList">위스키</li>
-            <li className="sojuList">소주</li>
-            <li className="beerList">맥주</li> */}
           </ul>
         </div>
         <div className="productListContainer">
@@ -63,25 +56,24 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList &&
-              productList.map((product) => (
-                <Link
-                  to={`/detail/${product.id}`}
-                  className="productWrapper"
-                  key={product.id}
-                >
-                  <img
-                    className="productImage"
-                    src={product.productImg}
-                    alt="wine list"
-                  />
-                  <div className="productDetailWrapper">
-                    <div className="productName">{product.name}</div>
-                    <div className="productDetail">{product.content}</div>
-                    <div className="productPrice">{product.price}</div>
-                  </div>
-                </Link>
-              ))}
+            {productList.map((product) => (
+              <Link
+                to={`/detail/${product.id}`}
+                className="productWrapper"
+                key={product.id}
+              >
+                <img
+                  className="productImage"
+                  src={product.productImg}
+                  alt="wine list"
+                />
+                <div className="productDetailWrapper">
+                  <div className="productName">{product.name}</div>
+                  <div className="productDetail">{product.content}</div>
+                  <div className="productPrice">{product.price}</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
@@ -93,19 +85,18 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList &&
-              productList.map((product) => (
-                <div className="productWrapper" key={product.id}>
-                  <img
-                    className="productImage"
-                    src={product.productImg}
-                    alt="second product"
-                  />
-                  <div className="productName">{product.name}</div>
-                  <div className="productDetail">{product.content}</div>
-                  <div className="productPrice">{product.price}</div>
-                </div>
-              ))}
+            {productList.map((product) => (
+              <div className="productWrapper" key={product.id}>
+                <img
+                  className="productImage"
+                  src={product.productImg}
+                  alt="second product"
+                />
+                <div className="productName">{product.name}</div>
+                <div className="productDetail">{product.content}</div>
+                <div className="productPrice">{product.price}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

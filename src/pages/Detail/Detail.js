@@ -16,7 +16,6 @@ const Detail = () => {
   const handleIncrease = () => {
     setQuantity(quantity + 1);
   };
-
   useEffect(() => {
     fetch(`/data/productListData.json`)
       .then((res) => res.json())
@@ -28,8 +27,31 @@ const Detail = () => {
       });
   }, [productId]);
 
+  const addToCart = () => {
+    fetch(`http://10.58.52.52:8000/products/detail`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+      },
+      body: JSON.stringify({
+        productId: Number(productId),
+        count: quantity,
+      }),
+    })
+      .then((res) => res.json())
+      .then((response) => {
+        console.log(response);
+        if (response.message === 'SUCCESS INSERT PRODUCT') {
+          alert('장바구니에 담았습니다!');
+        } else {
+          alert('장바구니에 담을 제품을 골라주세요!');
+        }
+      });
+  };
   return (
-    <div className="container">
+    <div className="Detail">
       {productDetail && (
         <div className="productContainer">
           <div className="imageContainer">
@@ -63,7 +85,9 @@ const Detail = () => {
               </div>
 
               <div className="buttonWrapper">
-                <button className="purchaseButton">장바구니에 담기</button>
+                <button className="purchaseButton" onClick={addToCart}>
+                  장바구니에 담기
+                </button>
 
                 <button className="bookmarkButton">관심상품</button>
               </div>
@@ -94,12 +118,6 @@ const Detail = () => {
                 <div className="deliveryDetail">주문 직후 픽업 가능</div>
               </div>
             </div>
-
-            {/* <div className="brandInfoWrapper"> */}
-            {/* <img></img> */}
-            {/* <p className="brandInfoOrigin">WonSoju</p> */}
-            {/* <p className="brandInfoKor">원소주</p> */}
-            {/* </div> */}
           </div>
         </div>
       )}
