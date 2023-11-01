@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import './Cost.scss';
+import { useNavigate } from 'react-router-dom';
 
 const Cost = () => {
   const [itemList, setItemList] = useState([]);
   const [user, setUser] = useState([]);
   const [checkInput, setCheckInput] = useState('');
   const [usePoint, setUsePoint] = useState();
+  const navigate = useNavigate();
 
   // 숫자 쉼표 추가
   const numWithComma = (a) => {
@@ -34,7 +36,7 @@ const Cost = () => {
 
   // 회원정보 불러오기
   useEffect(() => {
-    fetch(`http://10.58.52.200:3000/products/costUser`, {
+    fetch(`http://10.58.52.72:3000/products/costUser`, {
       method: 'POST',
       headers: {
         Authorization:
@@ -152,7 +154,7 @@ const Cost = () => {
 
   // 상품 주문
   const orderItem = () => {
-    fetch(`http://10.58.52.200:3000/products/costPay`, {
+    fetch(`http://10.58.52.72:3000/products/costPay`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -168,6 +170,7 @@ const Cost = () => {
       .then((data) => {
         if (data.message === 'order_success') {
           alert('결제가 완료되었습니다.');
+          navigate('/');
         }
       });
   };
@@ -308,7 +311,9 @@ const Cost = () => {
 
           <div className="orderPoint">
             <div className="price">포인트 사용</div>
-            <div className="price">{usePoint > 0 ? usePoint + 'P' : '-'}</div>
+            <div className="price">
+              {usePoint > 0 ? numWithComma(usePoint) + '원' : '-'}
+            </div>
           </div>
         </div>
 
