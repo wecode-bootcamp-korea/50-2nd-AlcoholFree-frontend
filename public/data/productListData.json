@@ -11,7 +11,7 @@
       "origin": "생산 국가: 스페인",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "와인"
+      "categoryId": "1"
     },
 
     {
@@ -25,7 +25,7 @@
       "origin": "생산 국가: 독일",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "전통주"
+      "categoryId": "4"
     },
 
     {
@@ -39,7 +39,7 @@
       "origin": "생산 국가: 프랑스",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "와인"
+      "categoryId": "2"
     },
     {
       "id": 4,
@@ -52,7 +52,7 @@
       "origin": "생산 국가: 호주",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "전통주"
+      "categoryId": "2"
     },
     {
       "id": 5,
@@ -65,7 +65,7 @@
       "origin": "생산 국가: 한국",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "소주"
+      "categoryId": "1"
     },
     {
       "id": 6,
@@ -78,7 +78,7 @@
       "origin": "생산 국가: 한국",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "와인"
+      "categoryId": "2"
     },
     {
       "id": 6,
@@ -91,7 +91,7 @@
       "origin": "생산 국가: 한국",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "소주"
+      "categoryId": "3"
     },
     {
       "id": 7,
@@ -104,7 +104,7 @@
       "origin": "생산 국가: 한국",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "맥주"
+      "categoryId": "3"
     },
     {
       "id": 8,
@@ -117,7 +117,7 @@
       "origin": "생산 국가: 한국",
       "avm": "도수: 5",
       "year": "생산 연도: 2008년",
-      "category": "맥주"
+      "categoryId": "2"
     }
   ]
 }
