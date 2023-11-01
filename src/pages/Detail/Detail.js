@@ -29,7 +29,7 @@ const Detail = () => {
   }, [productId]);
 
   return (
-    <div className="container">
+    <div className="Detail">
       {productDetail && (
         <div className="productContainer">
           <div className="imageContainer">

@@ -1,5 +1,6 @@
 .Main {
   .productListContainer {
+    margin-top: 120px;
     .alcoholProductList {
       display: grid;
       justify-content: space-between;
@@ -16,6 +17,13 @@
   }
 
   .productListMain {
+    .productTabMain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+    }
     .productListTab {
       display: grid;
       width: 100%;
@@ -23,30 +31,9 @@
       border: 0px;
       border-bottom: 1px solid #f0f0f0;
       margin-top: 10px;
-
-      .wineList {
+      .alcoholCategoryList {
         text-align: center;
         height: 53px;
-        font-weight: 600;
-      }
-      .traditionalList {
-        text-align: center;
-        height: 53px;
-        font-weight: 600;
-      }
-      .whiskeyList {
-        text-align: center;
-        height: 53px;
-        font-weight: 600;
-      }
-      .sojuList {
-        text-align: center;
-        height: 53px;
-        font-weight: 600;
-      }
-      .beerList {
-        text-align: center;
-        height: 43px;
         font-weight: 600;
       }
     }

@@ -30,10 +30,10 @@ const Main = () => {
   // }, []);
 
   const CATEGORIES = [
-    { id: 1, name: '와인', className: 'wineList' },
-    { id: 2, name: '전통주', className: 'traditionalList' },
-    { id: 3, name: '소주', className: 'sojuList' },
-    { id: 4, name: '맥주', className: 'beerList' },
+    { id: 1, name: '와인' },
+    { id: 2, name: '전통주' },
+    { id: 3, name: '소주' },
+    { id: 4, name: '맥주' },
   ];
 
   return (
@@ -42,7 +42,7 @@ const Main = () => {
         <div className="productTabMain">
           <ul className="productListTab">
             {CATEGORIES.map((category) => (
-              <li key={category.id} className={category.className}>
+              <li key={category.id} className="alcoholCategoryList">
                 {category.name}
               </li>
             ))}
@@ -85,19 +85,18 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList &&
-              productList.map((product) => (
-                <div className="productWrapper" key={product.id}>
-                  <img
-                    className="productImage"
-                    src={product.productImg}
-                    alt="second product"
-                  />
-                  <div className="productName">{product.name}</div>
-                  <div className="productDetail">{product.content}</div>
-                  <div className="productPrice">{product.price}</div>
-                </div>
-              ))}
+            {productList.map((product) => (
+              <div className="productWrapper" key={product.id}>
+                <img
+                  className="productImage"
+                  src={product.productImg}
+                  alt="second product"
+                />
+                <div className="productName">{product.name}</div>
+                <div className="productDetail">{product.content}</div>
+                <div className="productPrice">{product.price}</div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
