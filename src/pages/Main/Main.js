@@ -1,7 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import { useNavigate } from 'react-router-dom';
 
 import './Main.scss';
 
@@ -12,7 +11,6 @@ const Main = () => {
     fetch('/data/productListData.json')
       .then((res) => res.json())
       .then((data) => {
-        // console.log(data);
         setProductList(data.productList);
       });
   }, []);
@@ -58,25 +56,24 @@ const Main = () => {
           </div>
 
           <div className="alcoholProductList">
-            {productList &&
-              productList.map((product) => (
-                <Link
-                  to={`/detail/${product.id}`}
-                  className="productWrapper"
-                  key={product.id}
-                >
-                  <img
-                    className="productImage"
-                    src={product.productImg}
-                    alt="wine list"
-                  />
-                  <div className="productDetailWrapper">
-                    <div className="productName">{product.name}</div>
-                    <div className="productDetail">{product.content}</div>
-                    <div className="productPrice">{product.price}</div>
-                  </div>
-                </Link>
-              ))}
+            {productList.map((product) => (
+              <Link
+                to={`/detail/${product.id}`}
+                className="productWrapper"
+                key={product.id}
+              >
+                <img
+                  className="productImage"
+                  src={product.productImg}
+                  alt="wine list"
+                />
+                <div className="productDetailWrapper">
+                  <div className="productName">{product.name}</div>
+                  <div className="productDetail">{product.content}</div>
+                  <div className="productPrice">{product.price}</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
 
