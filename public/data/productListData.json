@@ -1,0 +1,123 @@
+{
+  "productList": [
+    {
+      "id": 1,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 01",
+      "content": "첫번째 상품입니다.",
+      "productDiscout": "0%",
+      "price": "300,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 스페인",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "와인"
+    },
+
+    {
+      "id": 2,
+      "productImg": "./images/product_img_02.webp",
+      "name": "상품 02",
+      "content": "두번째 상품입니다.",
+      "productDiscout": "0%",
+      "price": "100,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 독일",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "전통주"
+    },
+
+    {
+      "id": 3,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 03",
+      "content": "세번째 상품입니다.",
+      "productDiscout": "10%",
+      "price": "400,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 프랑스",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "와인"
+    },
+    {
+      "id": 4,
+      "productImg": "./images/product_img_02.webp",
+      "name": "상품 04",
+      "content": "네번째 상품입니다.",
+      "productDiscout": "40%",
+      "price": "200,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 호주",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "전통주"
+    },
+    {
+      "id": 5,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 05",
+      "content": "다섯번째 상품입니다.",
+      "productDiscout": "15%",
+      "price": "300,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 한국",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "소주"
+    },
+    {
+      "id": 6,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 06",
+      "content": "여섯번째 상품입니다.",
+      "productDiscout": "25%",
+      "price": "200,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 한국",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "와인"
+    },
+    {
+      "id": 6,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 06",
+      "content": "여섯번째 상품입니다.",
+      "productDiscout": "25%",
+      "price": "200,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 한국",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "소주"
+    },
+    {
+      "id": 7,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 07",
+      "content": "일곱번째 상품입니다.",
+      "productDiscout": "25%",
+      "price": "200,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 한국",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "맥주"
+    },
+    {
+      "id": 8,
+      "productImg": "./images/product_img_01.webp",
+      "name": "상품 08",
+      "content": "여덟번째 상품입니다.",
+      "productDiscout": "25%",
+      "price": "200,000원",
+      "priceOption": "구매가",
+      "origin": "생산 국가: 한국",
+      "avm": "도수: 5",
+      "year": "생산 연도: 2008년",
+      "category": "맥주"
+    }
+  ]
+}
