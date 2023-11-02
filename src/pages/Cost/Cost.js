@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Cost.scss';
 
 const Cost = () => {
@@ -6,6 +7,7 @@ const Cost = () => {
   const [user, setUser] = useState([]);
   const [checkInput, setCheckInput] = useState('');
   const [usePoint, setUsePoint] = useState();
+  const navigate = useNavigate();
 
   // 숫자 쉼표 추가
   const numWithComma = (a) => {
@@ -168,6 +170,7 @@ const Cost = () => {
       .then((data) => {
         if (data.message === 'order_success') {
           alert('결제가 완료되었습니다.');
+          navigate('/');
         }
       });
   };
