@@ -1,16 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import URL from '../../config';
 import './Main.scss';
 
 const Main = () => {
   const [productList, setProductList] = useState([]);
 
   useEffect(() => {
-    fetch(`http://10.58.52.164:8000/products/main/`, {
+    fetch(`${URL.Main}`, {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then((res) => res.json())
@@ -18,6 +17,7 @@ const Main = () => {
         setProductList(data);
       });
   }, []);
+
   const numWithComma = (a) => {
     if (a === undefined) {
       return '';

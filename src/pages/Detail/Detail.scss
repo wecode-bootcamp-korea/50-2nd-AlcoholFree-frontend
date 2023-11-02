@@ -5,6 +5,8 @@
     max-width: 1280px;
     overflow: hidden;
     padding: 30px 40px 120px;
+    display: flex;
+
     .columnLeft {
       float: right;
       padding-left: 3%;
@@ -13,12 +15,14 @@
       padding: 20px 14px;
       border-left: 1px solid #d3d3d3;
     }
+
     .imageContainer {
       display: flex;
-      float: left;
+      align-items: center;
+      justify-content: center;
       padding-right: 3.334%;
       width: 50%;
-      height: 500px;
+
       .productDetailImg {
         object-fit: cover;
         overflow: hidden;
@@ -32,20 +36,24 @@
       .priceInfo {
         font-size: 13px;
       }
+
       .productPriceDetail {
         font-size: 20px;
         font-weight: 700;
         letter-spacing: -0.1px;
         margin-top: 2px;
       }
+
       .nameContentWrapper {
         margin-bottom: 20px;
         margin-top: 20px;
+
         .productNameDetail {
           font-size: 17px;
           font-weight: 400;
           margin-bottom: 4px;
         }
+
         .productContentDetail,
         .additionalDetail {
           color: #727272;
@@ -55,6 +63,7 @@
         }
       }
     }
+
     .productFigure {
       margin: 0px;
       border: 0px;
@@ -65,6 +74,7 @@
       border: 1px solid #ebebeb;
       border-radius: 10px;
       height: 40px;
+
       .quantityValue {
         display: flex;
         justify-content: center;
@@ -75,6 +85,7 @@
         align-items: center;
         padding: 11px 8px 11px 10px;
       }
+
       .decreaseButton,
       .increaseButton {
         background-color: white;
@@ -92,6 +103,7 @@
       align-items: center;
       align-self: stretch;
       flex-direction: column;
+
       .purchaseButton,
       .bookmarkButton {
         align-self: stretch;
@@ -107,17 +119,21 @@
         height: 60px;
         letter-spacing: -0.09px;
       }
+
       .purchaseButton {
         background-color: #222;
         color: white;
         border: 0px;
+        cursor: pointer;
       }
+
       .bookmarkButton {
         background-color: white;
         color: black;
         border: 0.8px solid #d3d3d3;
       }
     }
+
     hr {
       border: 0px;
       border-top: 0.8px solid #d3d3d3;
@@ -127,12 +143,14 @@
       padding-top: 11px;
       padding-bottom: 11px;
       padding-left: 20px;
+
       .shipmentInfo {
         display: block;
         margin-block-start: 1em;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
       }
+
       .deliveryWrapper,
       .quickWrapper,
       .pickUpWrapper {
@@ -152,6 +170,7 @@
           margin-top: 4px;
         }
       }
+
       .deliveryTitle {
         align-items: center;
         display: flex;
@@ -161,6 +180,7 @@
         margin-block-start: 1em;
         margin-inline-start: 0px;
         margin-inline-end: 0px;
+
         .deliveryOption,
         .deliveryQuick,
         .pickUp {
@@ -178,6 +198,7 @@
       flex-direction: column;
 
       padding: 20px 16px 0;
+
       .brandInfoOrigin {
         display: flex;
         flex-direction: column;
@@ -185,6 +206,7 @@
         font-weight: 600;
         letter-spacing: -0.16px;
       }
+
       .brandInfoKor {
         display: flex;
         flex-direction: column;

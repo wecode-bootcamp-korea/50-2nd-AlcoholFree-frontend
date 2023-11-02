@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import URL from '../../config';
 import './Cost.scss';
 
 const Cost = () => {
@@ -16,11 +17,10 @@ const Cost = () => {
 
   // 장바구니 불러오는 함수
   const getCartList = () => {
-    fetch(`http://10.58.52.52:8000/products/cart`, {
+    fetch(`${URL.Cart}`, {
       method: 'GET',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then((res) => res.json())
@@ -36,11 +36,10 @@ const Cost = () => {
 
   // 회원정보 불러오기
   useEffect(() => {
-    fetch(`http://10.58.52.200:3000/products/costUser`, {
+    fetch(`${URL.CostUser}`, {
       method: 'POST',
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MTk0OTJ9.raeSnK2Ql4LCAqVVXd53p2o933AtBHhUmLcLkFDHKP0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then((res) => res.json())
@@ -57,12 +56,11 @@ const Cost = () => {
     if (productCount >= productQuantity)
       return alert('재고 수량이 부족합니다.');
 
-    fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
+    fetch(`${URL.Cart}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
         count: productCount + 1,
@@ -80,12 +78,11 @@ const Cost = () => {
 
     if (productCount <= 1) return alert('1개 이하로는 줄일 수 없습니다.');
 
-    fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
+    fetch(`${URL.Cart}/${id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
         count: productCount - 1,
@@ -99,12 +96,11 @@ const Cost = () => {
 
   // 상품 삭제
   const deleteItem = (id) => {
-    fetch(`http://10.58.52.52:8000/products/cart/${id}`, {
+    fetch(`${URL.Cart}/${id}/`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg2NTI3MDN9.vrPN3gvnepPB9LE0doiwuv5idJDvWQIK6jzuInjcBr0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
     }).then((res) => {
       if (res.ok) {
@@ -138,11 +134,13 @@ const Cost = () => {
   };
 
   // 주문한 상품 금액 총합
-  const totalPriceCal = itemList.reduce((sum, array, index) => {
-    sum += array.price * array.count;
+  const totalPriceCal = itemList
+    .filter((data) => data.status === '미결제')
+    .reduce((sum, array, index) => {
+      sum += array.price * array.count;
 
-    return sum;
-  }, 0);
+      return sum;
+    }, 0);
 
   // 포인트 사용
   const usingPoint = () => {
@@ -154,12 +152,11 @@ const Cost = () => {
 
   // 상품 주문
   const orderItem = () => {
-    fetch(`http://10.58.52.200:3000/products/costPay`, {
+    fetch(`${URL.CostPay}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MTk0OTJ9.raeSnK2Ql4LCAqVVXd53p2o933AtBHhUmLcLkFDHKP0',
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
         totalPrice:
@@ -180,40 +177,45 @@ const Cost = () => {
       <div className="container">
         <div className="shopList">
           <div className="shopCategory">
-            <div className="totalCount">전체 {itemList.length}개</div>
+            <div className="totalCount">
+              전체
+              {itemList.filter((data) => data.status === '미결제').length}개
+            </div>
             <div className="itemName">상품명</div>
             <div className="itemPrice">판매가</div>
             <div className="itemCount">수량</div>
             <div className="itemTotalPrice">총 가격</div>
           </div>
 
-          {itemList.map((data, index) => (
-            <div className="shopItem" key={data.id}>
-              <div className="shopID">{index + 1}</div>
-              <div className="shopInfo">
-                <div className="shopImage">
-                  <img src={data.productImg} alt="상품이미지" />
+          {itemList
+            .filter((data) => data.status === '미결제')
+            .map((data, index) => (
+              <div className="shopItem" key={data.id}>
+                <div className="shopID">{index + 1}</div>
+                <div className="shopInfo">
+                  <div className="shopImage">
+                    <img src={data.productImg} alt="상품이미지" />
+                  </div>
+                  <div className="shopDetail">
+                    <div className="shopName">{data.name}</div>
+                    <div className="shopType">{data.avm}</div>
+                    <div className="shopFrom">{data.origin}</div>
+                  </div>
                 </div>
-                <div className="shopDetail">
-                  <div className="shopName">{data.name}</div>
-                  <div className="shopType">{data.avm}</div>
-                  <div className="shopFrom">{data.origin}</div>
+                <div className="shopPrice">{numWithComma(data.price)}원</div>
+                <div className="countControl">
+                  <div className="shopCount">
+                    <button onClick={() => plusCount(data.id)}>+</button>
+                    {data.count}
+                    <button onClick={() => minusCount(data.id)}>-</button>
+                  </div>
+                  <button onClick={() => deleteItem(data.id)}>삭제</button>
+                </div>
+                <div className="shopTotalPrice">
+                  {numWithComma(data.price * data.count)}원
                 </div>
               </div>
-              <div className="shopPrice">{numWithComma(data.price)}원</div>
-              <div className="countControl">
-                <div className="shopCount">
-                  <button onClick={() => plusCount(data.id)}>+</button>
-                  {data.count}
-                  <button onClick={() => minusCount(data.id)}>-</button>
-                </div>
-                <button onClick={() => deleteItem(data.id)}>삭제</button>
-              </div>
-              <div className="shopTotalPrice">
-                {numWithComma(data.price * data.count)}원
-              </div>
-            </div>
-          ))}
+            ))}
         </div>
 
         <div className="deliver">
