@@ -37,12 +37,8 @@ const Login = () => {
         if (data.message === 'login_success') {
           localStorage.setItem('TOKEN', data.accessToken);
           navigate('/');
-        } else if (data.message === 'USER_NOT_FOUND') {
-          alert(
-            '가입되지 않은 이메일입니다.\n회원 가입 혹은 이메일을 확인해주세요.',
-          ); // 없는 이메일로 로그인 시도 시 회원 가입 혹은 이메일 확인 권유 알림
-        } else if (data.message === '로그인 정보 불일치!') {
-          alert('비밀번호가 틀렸습니다.'); // 비밀번호가 틀렸음을 알림
+        } else if (data.message === 'login_fail') {
+          alert('정보가 불일치합니다.\n이메일이랑 비밀번호를 확인해주세요.'); // 없는 이메일로 로그인 시도 시 회원 가입 혹은 이메일 확인 권유 알림
         }
       });
   };

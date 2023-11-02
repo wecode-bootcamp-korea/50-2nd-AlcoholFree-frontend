@@ -165,9 +165,21 @@ const Cost = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === 'order_success') {
+        if (
+          data.message === 'order_success' &&
+          usePoint ===
+            (checkInput === '무료'
+              ? numWithComma(totalPriceCal)
+              : numWithComma(checkInput + totalPriceCal))
+        ) {
           alert('결제가 완료되었습니다.');
           navigate('/');
+        } else if (
+          itemList.filter((data) => data.status === '미결제').length === 0
+        ) {
+          alert('장바구니에 상품을 담아주세요.');
+        } else {
+          alert('포인트를 확인해주세요.');
         }
       });
   };
