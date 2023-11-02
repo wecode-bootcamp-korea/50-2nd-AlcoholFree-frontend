@@ -18,11 +18,13 @@
 
   .productListMain {
     .productTabMain {
-      position: fixed;
-      top: 0;
+      position: sticky;
+      padding-top: 30px;
+      top: 0px;
       left: 0;
       right: 0;
       background-color: white;
+      box-shadow: 5px #f0f0f0;
     }
     .productListTab {
       display: grid;
@@ -117,6 +119,7 @@
       width: 270px;
       border-radius: 12px;
       margin-bottom: 5px;
+      box-shadow: 5px 5px 5px #f0f0f0;
     }
   }
 }

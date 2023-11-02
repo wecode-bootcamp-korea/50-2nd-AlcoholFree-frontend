@@ -24,10 +24,7 @@ const Detail = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        const product = data.productList.find(
-          (data) => data.id === Number(productId),
-        );
-        setProductDetail(product);
+        setProductDetail(data.products[0]);
       });
   }, [productId]);
 
