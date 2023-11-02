@@ -29,7 +29,7 @@ const Detail = () => {
   }, [productId]);
 
   const addToCart = () => {
-    fetch(`http://10.58.52.52:8000/products/detail`, {
+    fetch(`http://10.58.52.226:8000/products/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ const Detail = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        if (response.message === 'SUCCESS INSERT PRODUCT') {
+        if (response.message === 'succeeded') {
           alert('장바구니에 담았습니다!');
         } else {
           alert('장바구니에 담을 제품을 골라주세요!');
@@ -78,7 +78,7 @@ const Detail = () => {
               <h1 className="productNameDetail">{productDetail.name}</h1>
               <h2 className="productContentDetail">{productDetail.content}</h2>
               <h2 className="additionalDetail">
-                {productDetail.avm} | {productDetail.origin}
+                도수: {productDetail.avm} | 생산지: {productDetail.origin}
               </h2>
             </div>
             <div className="productFigure">

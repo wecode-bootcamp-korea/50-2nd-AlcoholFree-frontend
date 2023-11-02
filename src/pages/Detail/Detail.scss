@@ -7,10 +7,11 @@
     padding: 30px 40px 120px;
     .columnLeft {
       float: right;
-      padding-left: 3.334%;
+      padding-left: 3%;
       position: relative;
       width: 50%;
       padding: 20px 14px;
+      border-left: 1px solid #d3d3d3;
     }
     .imageContainer {
       display: flex;
@@ -26,6 +27,7 @@
 
     .columnContainer {
       display: block;
+      padding-left: 20px;
 
       .priceInfo {
         font-size: 13px;
@@ -124,6 +126,7 @@
     .shipmentInfoContainer {
       padding-top: 11px;
       padding-bottom: 11px;
+      padding-left: 20px;
       .shipmentInfo {
         display: block;
         margin-block-start: 1em;
