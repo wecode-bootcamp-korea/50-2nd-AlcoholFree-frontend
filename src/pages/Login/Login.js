@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Logo from './logo.png';
+import URL from '../../config';
 import './Login.scss';
 
 const Login = () => {
@@ -21,7 +22,7 @@ const Login = () => {
   };
 
   const loginWeb = () => {
-    fetch('http://10.58.52.64:8000/users/login', {
+    fetch(`${URL.Login}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json;charset=utf-8',
@@ -33,9 +34,9 @@ const Login = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data.message === 'LOGIN_SUCCESS') {
-          localStorage.setItem('TOKEN', data.token);
-          navigate('/main');
+        if (data.message === 'login_success') {
+          localStorage.setItem('TOKEN', data.accessToken);
+          navigate('/');
         } else if (data.message === 'USER_NOT_FOUND') {
           alert(
             '가입되지 않은 이메일입니다.\n회원 가입 혹은 이메일을 확인해주세요.',

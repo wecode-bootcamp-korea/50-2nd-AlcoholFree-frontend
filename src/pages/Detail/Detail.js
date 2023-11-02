@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import URL from '../../config';
 import './Detail.scss';
 
 const Detail = () => {
@@ -16,10 +17,9 @@ const Detail = () => {
     setQuantity(quantity + 1);
   };
   useEffect(() => {
-    fetch(`http://10.58.52.226:8000/products/detail/${productId}`, {
+    fetch(`${URL.Detail}/${productId}`, {
       headers: {
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+        Authorization: localStorage.getItem('TOKEN'),
       },
     })
       .then((res) => res.json())
@@ -29,12 +29,11 @@ const Detail = () => {
   }, [productId]);
 
   const addToCart = () => {
-    fetch(`http://10.58.52.226:8000/products/`, {
+    fetch(`${URL.Detail}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization:
-          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+        Authorization: localStorage.getItem('TOKEN'),
       },
       body: JSON.stringify({
         productId: Number(productId),
@@ -43,7 +42,7 @@ const Detail = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        if (response.message === 'succeeded') {
+        if (response.message === 'SUCCESS INSERT PRODUCT') {
           alert('장바구니에 담았습니다!');
         } else {
           alert('장바구니에 담을 제품을 골라주세요!');

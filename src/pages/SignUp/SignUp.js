@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Post from '../../components/Post/Post';
+import URL from '../../config';
 import './SignUp.scss';
 
 const SignUp = () => {
@@ -40,7 +41,7 @@ const SignUp = () => {
     } else if (userInput.password.length < 10) {
       alert('비밀번호는 10자리 이상으로 설정해주세요.');
     } else {
-      fetch('http://10.58.52.64:8000/users/signup', {
+      fetch(`${URL.SignUp}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json;charset=utf-8',
@@ -50,7 +51,10 @@ const SignUp = () => {
           password: userInput.password,
           name: userInput.name,
           birthDay: `${userInput.birthyear}-${userInput.birthmonth}-${userInput.birthday}`,
-          phoneNumber: userInput.mobile,
+          phoneNumber: `${userInput.mobile.replace(
+            /(\d{3})(\d{4})(\d{4})/,
+            '$1-$2-$3',
+          )}`,
           address: userInput.address + ' ' + userInput.addressDetail,
         }),
       })

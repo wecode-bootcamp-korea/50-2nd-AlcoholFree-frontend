@@ -11,11 +11,28 @@ const Nav = () => {
   };
 
   const goHome = () => {
-    navigate('/');
+    if (localStorage.length === 1) {
+      navigate('/');
+    } else {
+      return alert('로그인을 해주세요.');
+    }
   };
 
   const goCart = () => {
-    navigate('/cost');
+    if (localStorage.length === 1) {
+      navigate('/cost');
+    } else {
+      return alert('로그인을 해주세요.');
+    }
+  };
+
+  const logOut = () => {
+    localStorage.removeItem('TOKEN');
+    navigate('/login');
+  };
+
+  const isLogin = () => {
+    return localStorage.length === 1;
   };
 
   return (
@@ -25,8 +42,8 @@ const Nav = () => {
         <button className="topLink">마이페이지</button>
         <button className="topLink">관심상품</button>
         <button className="topLink">알림</button>
-        <button className="topLink" onClick={goLogin}>
-          로그인
+        <button className="topLink" onClick={isLogin() ? logOut : goLogin}>
+          {isLogin() ? '로그아웃' : '로그인'}
         </button>
       </div>
 

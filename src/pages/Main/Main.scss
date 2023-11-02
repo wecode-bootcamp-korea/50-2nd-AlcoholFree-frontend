@@ -1,7 +1,8 @@
 .Main {
   .productListMain {
+
     .productListContainer {
-      margin-top: 120px;
+
       .alcoholProductList {
         display: grid;
         justify-content: space-between;
@@ -14,6 +15,7 @@
         padding-right: 0;
         row-gap: 56px;
         grid-row-gap: 8px;
+
         .productImage {
           object-fit: cover;
           height: 270px;
@@ -27,6 +29,7 @@
         }
       }
     }
+
     .productTabMain {
       position: sticky;
       padding-top: 30px;
@@ -36,19 +39,22 @@
       background-color: white;
       box-shadow: 5px #f0f0f0;
     }
+
     .productListTab {
-      display: grid;
+      display: none;
       width: 100%;
       margin: 0px;
       border: 0px;
       border-bottom: 1px solid #f0f0f0;
       margin-top: 10px;
+
       .alcoholCategoryList {
         text-align: center;
         height: 53px;
         font-weight: 600;
       }
     }
+
     ul {
       display: block;
       grid-template-columns: repeat(2, minmax(0, 1fr));
