@@ -6,27 +6,26 @@ import './Main.scss';
 const Main = () => {
   const [productList, setProductList] = useState([]);
 
-  useEffect(() => {
-    fetch('/data/productListData.json')
-      .then((res) => res.json())
-      .then((data) => {
-        setProductList(data.productList);
-      });
-  }, []);
-
   // useEffect(() => {
-  //   fetch(`http://10.58.52.198:8000/products/main/`, {
-  //     headers: {
-  //       token:
-  //         'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
-  //     },
-  //   })
+  //   fetch('/data/productListData.json')
   //     .then((res) => res.json())
   //     .then((data) => {
-  //       console.log(data);
-  //       setProductList(data);
+  //       setProductList(data.productList);
   //     });
   // }, []);
+
+  useEffect(() => {
+    fetch(`http://10.58.52.164:8000/products/main/`, {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setProductList(data);
+      });
+  }, []);
 
   const CATEGORIES = [
     { id: 1, name: '와인' },
@@ -55,7 +54,7 @@ const Main = () => {
 
           <div className="alcoholProductList">
             {productList.map((product) => {
-              if (product.categoryId === '1') {
+              if (product.categoryId === 1) {
                 return (
                   <Link
                     to={`/detail/${product.id}`}
@@ -88,7 +87,7 @@ const Main = () => {
 
           <div className="alcoholProductList">
             {productList.map((product) => {
-              if (product.categoryId === '2') {
+              if (product.categoryId === 2) {
                 return (
                   <Link
                     to={`/detail/${product.id}`}
@@ -120,7 +119,7 @@ const Main = () => {
 
           <div className="alcoholProductList">
             {productList.map((product) => {
-              if (product.categoryId === '3') {
+              if (product.categoryId === 3) {
                 return (
                   <Link
                     to={`/detail/${product.id}`}
@@ -152,7 +151,7 @@ const Main = () => {
 
           <div className="alcoholProductList">
             {productList.map((product) => {
-              if (product.categoryId === '4') {
+              if (product.categoryId === 4) {
                 return (
                   <Link
                     to={`/detail/${product.id}`}
