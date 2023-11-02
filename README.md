@@ -2,7 +2,7 @@
 
 ## 팀원소개
 
-## 팀 이름 : Alcohol Free
+Front : 신희현(Project Manager), 이새미(Product Manager)
+Back : 이해민(Project Manager), 이재현, 정원규, 김문영
 
-Front : 신희현, 이새미, 문정환
-Back : 이해민, 이재현, 정원규, 김문영
+## 팀 이름 : Alcohol Free
