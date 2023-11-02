@@ -1,0 +1,121 @@
+.Main {
+  .productListContainer {
+    margin-top: 120px;
+    .alcoholProductList {
+      display: grid;
+      justify-content: space-between;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-left: auto;
+      margin-right: auto;
+      max-width: 1200px;
+      padding-bottom: 56px;
+      padding-left: 0;
+      padding-right: 0;
+      row-gap: 56px;
+      grid-row-gap: 8px;
+    }
+  }
+
+  .productListMain {
+    .productTabMain {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: white;
+    }
+    .productListTab {
+      display: grid;
+      width: 100%;
+      margin: 0px;
+      border: 0px;
+      border-bottom: 1px solid #f0f0f0;
+      margin-top: 10px;
+      .alcoholCategoryList {
+        text-align: center;
+        height: 53px;
+        font-weight: 600;
+      }
+    }
+    ul {
+      display: block;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-block-start: 1em;
+      margin-block-end: 1em;
+      margin-inline-start: 0px;
+      margin-inline-end: 0px;
+      padding-inline-start: 40px;
+    }
+
+    li {
+      display: list-item;
+      text-align: -webkit-match-parent;
+    }
+
+    .titleProductList {
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .productWrapper {
+      flex-direction: column;
+      grid-column-gap: 8px;
+      -webkit-column-gap: 8px;
+      -moz-column-gap: 8px;
+      column-gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin: 0 auto;
+      padding-top: 20px;
+      padding-bottom: 28px;
+      padding-left: 16px;
+      padding-right: 16px;
+      row-gap: 28px;
+      text-decoration-line: none;
+      color: inherit;
+    }
+
+    .productName {
+      align-items: center;
+      color: #333;
+      display: flex;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: -0.07px;
+      line-height: 16px;
+      margin-bottom: 3px;
+    }
+
+    .productDetail {
+      color: rgba(34, 34, 34, 0.5);
+      font-size: 11px;
+      line-height: 13px;
+      margin-top: 2px;
+      margin-bottom: 7px;
+    }
+
+    .productPrice {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 17px;
+      margin-bottom: 3px;
+    }
+
+    .productListHeader {
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-top: 28px;
+      text-align: center;
+    }
+
+    .productImage {
+      height: auto;
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 5px;
+    }
+  }
+}
