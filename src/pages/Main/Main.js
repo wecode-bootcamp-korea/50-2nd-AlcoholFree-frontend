@@ -6,14 +6,6 @@ import './Main.scss';
 const Main = () => {
   const [productList, setProductList] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('/data/productListData.json')
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setProductList(data.productList);
-  //     });
-  // }, []);
-
   useEffect(() => {
     fetch(`http://10.58.52.164:8000/products/main/`, {
       headers: {
@@ -66,11 +58,13 @@ const Main = () => {
                     className="productWrapper"
                     key={product.id}
                   >
-                    <img
-                      className="productImage"
-                      src={product.productImg}
-                      alt="wine list"
-                    />
+                    <div className="imageWrapper">
+                      <img
+                        className="productImage"
+                        src={product.productImg}
+                        alt="wine list"
+                      />
+                    </div>
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
@@ -101,11 +95,13 @@ const Main = () => {
                     className="productWrapper"
                     key={product.id}
                   >
-                    <img
-                      className="productImage"
-                      src={product.productImg}
-                      alt="wine list"
-                    />
+                    <div className="imageWrapper">
+                      <img
+                        className="productImage"
+                        src={product.productImg}
+                        alt="wine list"
+                      />
+                    </div>
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
@@ -135,11 +131,13 @@ const Main = () => {
                     className="productWrapper"
                     key={product.id}
                   >
-                    <img
-                      className="productImage"
-                      src={product.productImg}
-                      alt="wine list"
-                    />
+                    <div className="imageWrapper">
+                      <img
+                        className="productImage"
+                        src={product.productImg}
+                        alt="wine list"
+                      />
+                    </div>
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
@@ -169,11 +167,13 @@ const Main = () => {
                     className="productWrapper"
                     key={product.id}
                   >
-                    <img
-                      className="productImage"
-                      src={product.productImg}
-                      alt="wine list"
-                    />
+                    <div className="imageWrapper">
+                      <img
+                        className="productImage"
+                        src={product.productImg}
+                        alt="wine list"
+                      />
+                    </div>
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
