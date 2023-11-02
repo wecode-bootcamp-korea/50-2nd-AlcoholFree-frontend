@@ -16,7 +16,12 @@ const Detail = () => {
     setQuantity(quantity + 1);
   };
   useEffect(() => {
-    fetch(`/data/productListData.json`)
+    fetch(`http://10.58.52.226:8000/products/detail/${productId}`, {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
         const product = data.productList.find(

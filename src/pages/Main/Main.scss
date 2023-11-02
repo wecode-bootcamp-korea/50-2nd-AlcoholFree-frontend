@@ -112,8 +112,9 @@
     }
 
     .productImage {
-      height: auto;
-      width: 100%;
+      object-fit: cover;
+      height: 270px;
+      width: 270px;
       border-radius: 12px;
       margin-bottom: 5px;
     }
