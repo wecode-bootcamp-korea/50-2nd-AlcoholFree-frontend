@@ -26,7 +26,12 @@ const Main = () => {
         setProductList(data);
       });
   }, []);
-
+  const numWithComma = (a) => {
+    if (a === undefined) {
+      return '';
+    }
+    return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
   const CATEGORIES = [
     { id: 1, name: '와인' },
     { id: 2, name: '전통주' },
@@ -69,7 +74,9 @@ const Main = () => {
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
-                      <div className="productPrice">{product.price}</div>
+                      <div className="productPrice">
+                        {numWithComma(product.price)}원
+                      </div>
                     </div>
                   </Link>
                 );
@@ -102,7 +109,9 @@ const Main = () => {
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
-                      <div className="productPrice">{product.price}</div>
+                      <div className="productPrice">
+                        {numWithComma(product.price)}원
+                      </div>
                     </div>
                   </Link>
                 );
@@ -134,7 +143,9 @@ const Main = () => {
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
-                      <div className="productPrice">{product.price}</div>
+                      <div className="productPrice">
+                        {numWithComma(product.price)}원
+                      </div>
                     </div>
                   </Link>
                 );
@@ -166,7 +177,9 @@ const Main = () => {
                     <div className="productDetailWrapper">
                       <div className="productName">{product.name}</div>
                       <div className="productDetail">{product.content}</div>
-                      <div className="productPrice">{product.price}</div>
+                      <div className="productPrice">
+                        {numWithComma(product.price)}원
+                      </div>
                     </div>
                   </Link>
                 );

@@ -50,6 +50,14 @@ const Detail = () => {
         }
       });
   };
+
+  const numWithComma = (a) => {
+    if (a === undefined) {
+      return '';
+    }
+    return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <div className="Detail">
       <div className="productContainer">
@@ -63,7 +71,9 @@ const Detail = () => {
         <div className="columnLeft">
           <div className="columnContainer">
             <div className="priceInfo">구매가</div>
-            <h1 className="productPriceDetail">{productDetail.price}</h1>
+            <h1 className="productPriceDetail">
+              {numWithComma(productDetail.price)}원
+            </h1>
             <div className="nameContentWrapper">
               <h1 className="productNameDetail">{productDetail.name}</h1>
               <h2 className="productContentDetail">{productDetail.content}</h2>
