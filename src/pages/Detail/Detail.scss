@@ -1,14 +1,4 @@
 .Detail {
-  .imageContainer {
-    position: fixed;
-    top: 116px;
-    width: 323px;
-  }
-  .productDetailImg {
-    left: 50%;
-    position: absolute;
-    top: 50%;
-  }
   .productContainer {
     margin-left: auto;
     margin-right: auto;
@@ -17,14 +7,27 @@
     padding: 30px 40px 120px;
     .columnLeft {
       float: right;
-      padding-left: 3.334%;
+      padding-left: 3%;
       position: relative;
       width: 50%;
-      padding: 20px 16px;
+      padding: 20px 14px;
+      border-left: 1px solid #d3d3d3;
+    }
+    .imageContainer {
+      display: flex;
+      float: left;
+      padding-right: 3.334%;
+      width: 50%;
+      height: 500px;
+      .productDetailImg {
+        object-fit: cover;
+        overflow: hidden;
+      }
     }
 
     .columnContainer {
       display: block;
+      padding-left: 20px;
 
       .priceInfo {
         font-size: 13px;
@@ -123,6 +126,7 @@
     .shipmentInfoContainer {
       padding-top: 11px;
       padding-bottom: 11px;
+      padding-left: 20px;
       .shipmentInfo {
         display: block;
         margin-block-start: 1em;

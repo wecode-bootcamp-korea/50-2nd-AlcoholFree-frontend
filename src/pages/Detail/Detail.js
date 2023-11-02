@@ -16,18 +16,20 @@ const Detail = () => {
     setQuantity(quantity + 1);
   };
   useEffect(() => {
-    fetch(`/data/productListData.json`)
+    fetch(`http://10.58.52.226:8000/products/detail/${productId}`, {
+      headers: {
+        Authorization:
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJkbGdvYWxzMzM5NkBnbWFpbC5jb20iLCJpYXQiOjE2OTg3MjUzOTZ9.3ss1Gd6bBClErKuI8rReyorf0EiM-PxILW-p0_KLMA4',
+      },
+    })
       .then((res) => res.json())
       .then((data) => {
-        const product = data.productList.find(
-          (data) => data.id === Number(productId),
-        );
-        setProductDetail(product);
+        setProductDetail(data.products[0]);
       });
   }, [productId]);
 
   const addToCart = () => {
-    fetch(`http://10.58.52.52:8000/products/detail`, {
+    fetch(`http://10.58.52.226:8000/products/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -41,13 +43,21 @@ const Detail = () => {
     })
       .then((res) => res.json())
       .then((response) => {
-        if (response.message === 'SUCCESS INSERT PRODUCT') {
+        if (response.message === 'succeeded') {
           alert('장바구니에 담았습니다!');
         } else {
           alert('장바구니에 담을 제품을 골라주세요!');
         }
       });
   };
+
+  const numWithComma = (a) => {
+    if (a === undefined) {
+      return '';
+    }
+    return a.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  };
+
   return (
     <div className="Detail">
       <div className="productContainer">
@@ -61,12 +71,14 @@ const Detail = () => {
         <div className="columnLeft">
           <div className="columnContainer">
             <div className="priceInfo">구매가</div>
-            <h1 className="productPriceDetail">{productDetail.price}</h1>
+            <h1 className="productPriceDetail">
+              {numWithComma(productDetail.price)}원
+            </h1>
             <div className="nameContentWrapper">
               <h1 className="productNameDetail">{productDetail.name}</h1>
               <h2 className="productContentDetail">{productDetail.content}</h2>
               <h2 className="additionalDetail">
-                {productDetail.avm} | {productDetail.origin}
+                도수: {productDetail.avm} | 생산지: {productDetail.origin}
               </h2>
             </div>
             <div className="productFigure">
