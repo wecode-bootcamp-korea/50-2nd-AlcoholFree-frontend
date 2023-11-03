@@ -36,16 +36,21 @@ const Cost = () => {
 
   // 회원정보 불러오기
   useEffect(() => {
-    fetch(`${URL.CostUser}`, {
-      method: 'POST',
-      headers: {
-        Authorization: localStorage.getItem('TOKEN'),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setUser(data.message[0]);
-      });
+    if (localStorage.length === 1) {
+      fetch(`${URL.CostUser}`, {
+        method: 'POST',
+        headers: {
+          Authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setUser(data.message[0]);
+        });
+    } else {
+      alert('로그인을 먼저 해주세요.');
+      navigate('/login');
+    }
   }, []);
 
   // 상품 개수 추가
@@ -152,36 +157,34 @@ const Cost = () => {
 
   // 상품 주문
   const orderItem = () => {
-    fetch(`${URL.CostPay}`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-        Authorization: localStorage.getItem('TOKEN'),
-      },
-      body: JSON.stringify({
-        totalPrice:
-          checkInput === '무료' ? totalPriceCal : checkInput + totalPriceCal,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (
-          data.message === 'order_success' &&
-          usePoint ===
-            (checkInput === '무료'
-              ? numWithComma(totalPriceCal)
-              : numWithComma(checkInput + totalPriceCal))
-        ) {
-          alert('결제가 완료되었습니다.');
-          navigate('/');
-        } else if (
-          itemList.filter((data) => data.status === '미결제').length === 0
-        ) {
-          alert('장바구니에 상품을 담아주세요.');
-        } else {
-          alert('포인트를 확인해주세요.');
-        }
-      });
+    if (
+      usePoint ===
+        (checkInput === '무료' ? totalPriceCal : checkInput + totalPriceCal) &&
+      itemList.length !== 0
+    ) {
+      fetch(`${URL.CostPay}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json;charset=utf-8',
+          Authorization: localStorage.getItem('TOKEN'),
+        },
+        body: JSON.stringify({
+          totalPrice:
+            checkInput === '무료' ? totalPriceCal : checkInput + totalPriceCal,
+        }),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.message === 'order_success') {
+            alert('결제가 완료되었습니다.');
+            navigate('/');
+          }
+        });
+    } else if (itemList.length === 0) {
+      alert('장바구니에 상품을 담아주세요.');
+    } else {
+      alert('포인트를 확인해주세요.');
+    }
   };
 
   return (
