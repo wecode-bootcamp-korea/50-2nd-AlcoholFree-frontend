@@ -1,21 +1,27 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import URL from '../../config';
 import './Main.scss';
 
 const Main = () => {
   const [productList, setProductList] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetch(`${URL.Main}`, {
-      headers: {
-        Authorization: localStorage.getItem('TOKEN'),
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setProductList(data);
-      });
+    if (localStorage.length === 1) {
+      fetch(`${URL.Main}`, {
+        headers: {
+          Authorization: localStorage.getItem('TOKEN'),
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setProductList(data);
+        });
+    } else {
+      alert('로그인을 먼저 진행해주세요.');
+      navigate('/login');
+    }
   }, []);
 
   const numWithComma = (a) => {

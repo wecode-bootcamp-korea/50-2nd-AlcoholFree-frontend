@@ -63,6 +63,8 @@ const SignUp = () => {
           if (data.message === 'created_success') {
             alert('회원가입이 완료되었습니다.');
             navigate('/login');
+          } else if (data.message === 'created_fail') {
+            alert('이미 가입된 회원입니다.');
           }
         });
     }
