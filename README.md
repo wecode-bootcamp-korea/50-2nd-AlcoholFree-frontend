@@ -40,3 +40,19 @@
 
 - 장바구니 및 결제
 ![image](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-frontend/assets/96459468/e1bd02a4-4128-4d26-a9ab-2e46e4500adb)
+
+## 프로젝트 설치 및 실행
+1. 리포지토리 클론
+```
+git clone https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-frontend/
+```
+
+2. 의존성 패키지 설치
+```
+npm install
+```
+
+3. 프로젝트 실행
+```
+npm start
+```
