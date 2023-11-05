@@ -6,8 +6,10 @@
 - 프로젝트 목표 : 주류 판매와 관련된 다양한 제품을 소비자에게 판매 중계
 - 기간 : 2023/10/23 ~ 2023/11/03
 
-# [프론트엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-frontend)
+### [프론트엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-frontend)
 - [신희현](http://github.com/hxxhyun)
 - [이새미](https://github.com/summersweetpotato)
 
-# [백엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
+### [백엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
+- [이해민](https://github.com/tivldjtm11)
+- [이재현](https://github.com/LeeJaeHyean)
