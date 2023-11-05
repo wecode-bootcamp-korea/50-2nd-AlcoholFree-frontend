@@ -25,7 +25,7 @@
 - GitHub
 - Trello
 - Slack
-- [Notion](https://wecode.notion.site/A-Alcohol-Free-96e03f18bf50407a8f5167efc37eeb74)
+- Notion
 
 ## Features
 - 회원가입 : 이메일 유효성 검사 ('@', '.' 포함), 비밀번호 확인 검사를 통해 회원가입 가능 여부 판단 및 주소 API를 통해 용이한 주소 입력
