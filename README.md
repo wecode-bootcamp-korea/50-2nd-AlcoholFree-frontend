@@ -9,7 +9,7 @@
 ## Contributors
 - [신희현](http://github.com/hxxhyun) : 각 페이지의 헤더, 로그인, 회원가입, 장바구니 및 결제
 - [이새미](https://github.com/summersweetpotato) : 상품 리스트, 상세 페이지
-- [백엔드 Git](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
+- [백엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
 
 ## Tech Stack
 - React
