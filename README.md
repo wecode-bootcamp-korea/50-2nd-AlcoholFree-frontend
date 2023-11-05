@@ -7,9 +7,15 @@
 - 기간 : 2023/10/23 ~ 2023/11/03(2주)
 
 ## Contributors
+### [FE](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-frontend)
 - [신희현](http://github.com/hxxhyun) : 각 페이지의 헤더, 로그인, 회원가입, 장바구니 및 결제
 - [이새미](https://github.com/summersweetpotato) : 상품 리스트, 상세 페이지
-- [백엔드](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
+
+### [BE](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
+- [이해민](https://github.com/tivldjtm11) : 회원, 결제, RDS
+- [이재현](https://github.com/LeeJaeHyean) : 주문
+- [김문영](https://github.com/kimmunyeong) : 상품 리스트
+- [정원규](https://github.com/wonkyujeong) : 상세 페이지
 
 ## Tech Stack
 - React
