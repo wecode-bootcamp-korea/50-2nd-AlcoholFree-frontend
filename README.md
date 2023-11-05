@@ -12,10 +12,10 @@
 - [백엔드 Git](https://github.com/wecode-bootcamp-korea/50-2nd-AlcoholFree-backend)
 
 ## Tech
-- React.js
-- HTML
-- CSS
-- Javascript
+- React
+- HTML5
+- CSS3
+- Javascript(ES6)
 - GitHub
 
 ## Features
