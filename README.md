@@ -15,7 +15,6 @@
 - [이해민](https://github.com/tivldjtm11) : 회원, 결제, RDS
 - [이재현](https://github.com/LeeJaeHyean) : 주문
 - [김문영](https://github.com/kimmunyeong) : 상품 리스트
-- [정원규](https://github.com/wonkyujeong) : 상세 페이지
 
 ## Tech Stack
 - React
